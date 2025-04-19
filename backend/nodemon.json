@@ -1,0 +1,8 @@
+{
+    "watch": [".", "./server", "./model"],
+    "legacyWatch": true,
+    "ignore": ["node_modules", ".dockerignore", "Dockerfile"],
+    "ext": "js,json",
+    "exec": "node index.js"
+  }
+  
