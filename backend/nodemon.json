@@ -1,5 +1,5 @@
 {
-    "watch": [".", "./server", "./model"],
+    "watch": [".", "./server", "./model", "./router"],
     "legacyWatch": true,
     "ignore": ["node_modules", ".dockerignore", "Dockerfile"],
     "ext": "js,json",

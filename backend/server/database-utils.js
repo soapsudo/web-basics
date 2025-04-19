@@ -41,15 +41,10 @@ class DatabaseUtils {
 
         try{
             await this.execute(sql);
-        }catch(error){
-            console.log(error);
-        }    
-
-        try{
             await this.execute(sqlUsersTest);
         }catch(error){
             console.log(error);
-        }
+        }    
     }
 
     /**
