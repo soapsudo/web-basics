@@ -35,7 +35,7 @@ class DatabaseUtils {
     async createTables() {
         try{
             await this.execute(initialQuery);
-            insertDummyData(this);
+            await insertDummyData(this);
         }catch(error){
             console.log(error.message);
         }    
