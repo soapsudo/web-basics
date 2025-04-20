@@ -38,7 +38,7 @@ Vervolgens kan de website bekeken worden als het document `frontend/index.html` 
 ### Opstarten met Docker:
 Vereist: `docker` installatie op de machine, samen met `docker compose`
 <br><br>
-Navigeer naar de `/backend` directory binnen deze map in een terminal en voer de volgende commando in:
+Navigeer naar de root directory van deze map in een terminal en voer de volgende commando in:
 - `docker compose up` - wat zorgt dat backend en frontend samen in twee aparte docker 
 containers worden opgestart, verbonden met een bridged netwerk
 
