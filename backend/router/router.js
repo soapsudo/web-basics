@@ -12,6 +12,15 @@ class Router{
     }
 
     loadRoutes(){
+        this.loadMovieRoutes();
+        this.loadWatchlistRoutes();
+    }
+
+    loadWatchlistRoutes(){
+
+    }
+
+    loadMovieRoutes(){
         this.app.get('/movies', this.movie.getAll);  
 
     }

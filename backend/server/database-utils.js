@@ -1,5 +1,5 @@
 import sqlite3 from 'sqlite3';
-import { initialQuery } from './initial-queries.js';
+import { initialQuery, insertDummyData } from './initial-queries.js';
 
 class DatabaseUtils {
 
@@ -35,8 +35,9 @@ class DatabaseUtils {
     async createTables() {
         try{
             await this.execute(initialQuery);
+            insertDummyData(this);
         }catch(error){
-            console.log(error);
+            console.log(error.message);
         }    
     }
 

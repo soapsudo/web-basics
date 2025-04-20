@@ -8,7 +8,7 @@ class Movie extends DatabaseObject{
 
     getAll = async (req, res) => {
         try {
-            res.json(await this.db.fetchAll(`PRAGMA table_list`));
+            res.json(await this.db.fetchAll(`SELECT * FROM movie`));
             
         } catch (error) {
             res.json(error.message);

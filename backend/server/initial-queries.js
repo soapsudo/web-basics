@@ -1,10 +1,12 @@
 //Hele lelijke manier om de initiele query uit te voeren en dummy data erin te zetten
 
-const csvDir = './dummydata/'
-const fileNames = [csvDir + 'actor.csv', csvDir + 'category.csv', csvDir + 'director.csv', csvDir + 'movie_actor.csv', csvDir + 'movie.csv', csvDir + 'watched.csv'];
+import * as fs from 'fs';
 
-const csv = require('csv-parser');
-const fs = require('fs');
+const __dirname = import.meta.dirname;
+const csvDir = __dirname + '/dummydata/';
+
+const fileNames = [csvDir + 'actor.csv', csvDir + 'category.csv', csvDir + 'director.csv', csvDir + 'movie_actor.csv', csvDir + 'movie.csv', csvDir + 'watched.csv'];
+const tableNames = ['actor', 'category', 'director', 'movie_actor', 'movie', 'watchlist'];
 
 export const initialQuery = `
  
@@ -52,61 +54,82 @@ CREATE TABLE IF NOT EXISTS watchlist(
 );
 `;
 
+export async function insertDummyData(db) {
+    for (let i = 0; i < fileNames.length; i++) {
 
-class Actor{
-    constructor(id, firstName, lastName){
-        this.id = id;
-        this.firstName = firstName;
-        this.lastName = lastName;
+        let fileName = fileNames[i];
+        let tableName = tableNames[i];
+        let parsedFile = null;
+
+        try {
+            parsedFile = await parseCSV(fileName);
+        } catch (error) {
+            console.log(error.message);
+        }
+
+        if (parsedFile) {
+
+            parsedFile.forEach(element => {            
+                let cols = Object.keys(element);
+                let query = buildQuery(tableName, element, cols);
+                try{
+                    db.execute(query);
+
+                }catch(error){                    
+                    console.log(error + 'hallo');
+                }
+            });
+        }
     }
 }
 
-class Director{
-    constructor(id, firstName, lastName){
-        this.id;
-        this.firstName = firstName;
-        this.lastName = lastName;
+function buildQuery(tableName, parsedFile, cols) {
+
+    let query = `INSERT OR REPLACE INTO `  + tableName + ` (` + cols.join(', ')  + `) VALUES (`;
+
+    for (let i = 0; i < cols.length; i++) {
+
+        let value = parsedFile[cols[i]] || 'NULL';
+
+        if (typeof value === 'string') {
+            value = value.replace(/'/g, "''");
+
+        }
+
+        query += `'` + value + `'`;
+        query += (i !== (cols.length - 1)) ? ',' : ');';
     }
+
+
+    return query;
+
 }
 
-class Category{
-    constructor(id, categoryName){
-        this.id = id;
-        this.categoryName = categoryName;
+async function parseCSV(fileName) {
+
+    //Terminal houdt niet van \r, dus hierin moest ik bij de lines dit vervangen
+    try {
+
+        let csv = await fs.readFileSync(fileName);
+        const array = csv.toString().trim().split("\n").map(line => line.replace(/\r$/, ""));
+
+        let result = [];
+        let headers = array[0].split("---").map(header => header.replace(/\r$/, ""));
+
+        for (let i = 1; i < array.length; i++) {
+            let obj = {};
+            let currentLine = array[i].split("---").map(value => value.replace(/\r$/, ""));
+
+            for (let j = 0; j < headers.length; j++) {
+                obj[headers[j]] = currentLine[j];
+            }
+
+            result.push(obj);
+        }
+
+        return result;
+
+    } catch (error) {
+        console.log(error.message);
     }
-}
-
-class Movie{
-    constructor(id, categoryID, directorID, title, image, description, releaseYear, score){
-        this.id = id;
-        this.categoryID = categoryID;
-        this.directorID = directorID;
-        this.title = title;
-        this.image = image;
-        this.description = description;
-        this.releaseYear = releaseYear;
-        this.score = score;
-    }
-}
-
-class MovieActor{
-    constructor(movieId, actorId){
-        this.movieId = movieId;
-        this.actorId = actorId;
-    }
-}
-
-class Watched{
-    constructor(movieId, watched){
-        this.movieId = movieId;
-        this.watched = watched;
-    }
-}
-
-function getActorData(){
-
-    let data = [];
-
-    fs.createReadStream(fileNames[0])
-
 }
