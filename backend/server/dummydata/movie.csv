@@ -1,0 +1,51 @@
+movie_id,category_id,director_id,movie_title,image,description,release_year,score
+1,3,1,Inception,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAFUlEQVR42mP8z8DwnwEIBAQYAAACAAAA4P8H4gAAAAASUVORK5CYII=,A thief with the ability to enter dreams must pull off the ultimate heist.,2010,8
+2,2,2,Pulp Fiction,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAFUlEQVR42mP8z8DwnwEIBAQYAAACAAAA4P8H4gAAAAASUVORK5CYII=,Interwoven stories of crime and redemption in Los Angeles.,1994,9
+3,3,3,Jurassic Park,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAFUlEQVR42mNgYGD4zwABBgYGBgYAAACo/wfiAAAAAElFTkSuQmCC,A theme park with living dinosaurs goes horribly wrong.,1993,8
+4,4,4,Little Women,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAFUlEQVR42mNgYGD4zwABBgYGBgYAAACo/wfiAAAAAElFTkSuQmCC,Four sisters come of age in post-Civil War America.,2019,7
+5,3,5,Dune,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAFUlEQVR42mP8/5/hPwMECBAgAAAAAP8/AOMAAAAASUVORK5CYII=,A young noble navigates a desert planet's political and ecological challenges.,2021,8
+6,2,6,The Wolf of Wall Street,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAFUlEQVR42mP8z8DwnwEIBAQYAAACAAAA4P8H4gAAAAASUVORK5CYII=,A stockbroker's rise and fall through greed and excess.,2013,8
+7,5,7,Fight Club,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAFUlEQVR42mNgYGD4zwABBgYGBgYAAACo/wfiAAAAAElFTkSuQmCC,An insomniac forms an underground fight club with a charismatic stranger.,1999,9
+8,3,8,Gravity,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAFUlEQVR42mP8/5/hPwMECBAgAAAAAP8/AOMAAAAASUVORK5CYII=,Two astronauts fight for survival after a space shuttle disaster.,2013,7
+9,2,9,Parasite,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAFUlEQVR42mP8z8DwnwEIBAQYAAACAAAA4P8H4gAAAAASUVORK5CYII=,A poor family schemes to infiltrate a wealthy household.,2019,9
+10,1,10,Wonder Woman,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAFUlEQVR42mNgYGD4zwABBgYGBgYAAACo/wfiAAAAAElFTkSuQmCC,An Amazonian warrior fights to save the world during WWI.,2017,7
+11,3,11,Avatar,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAFUlEQVR42mP8/5/hPwMECBAgAAAAAP8/AOMAAAAASUVORK5CYII=,A marine explores an alien planet and joins its indigenous fight.,2009,8
+12,2,12,Brokeback Mountain,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAFUlEQVR42mP8z8DwnwEIBAQYAAACAAAA4P8H4gAAAAASUVORK5CYII=,Two cowboys form a forbidden romance in 1960s Wyoming.,2005,7
+13,2,13,Lost in Translation,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAFUlEQVR42mNgYGD4zwABBgYGBgYAAACo/wfiAAAAAElFTkSuQmCC,A lonely actor and a young woman connect in Tokyo.,2003,7
+14,3,14,Blade Runner,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAFUlEQVR42mP8/5/hPwMECBAgAAAAAP8/AOMAAAAASUVORK5CYII=,A bounty hunter tracks rogue androids in a dystopian future.,1982,8
+15,7,15,Pan's Labyrinth,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAFUlEQVR42mP8z8DwnwEIBAQYAAACAAAA4P8H4gAAAAASUVORK5CYII=,A girl escapes war-torn Spain through a magical labyrinth.,2006,8
+16,2,16,Selma,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAFUlEQVR42mNgYGD4zwABBgYGBgYAAACo/wfiAAAAAElFTkSuQmCC,Martin Luther King Jr. leads the civil rights march to Selma.,2014,7
+17,2,17,Do the Right Thing,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAFUlEQVR42mP8/5/hPwMECBAgAAAAAP8/AOMAAAAASUVORK5CYII=,Tensions rise on a hot summer day in Brooklyn.,1989,8
+18,4,18,Jojo Rabbit,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAFUlEQVR42mP8z8DwnwEIBAQYAAACAAAA4P8H4gAAAAASUVORK5CYII=,A boy’s imaginary Hitler navigates Nazi Germany.,2019,8
+19,2,19,Nomadland,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAFUlEQVR42mNgYGD4zwABBgYGBgYAAACo/wfiAAAAAElFTkSuQmCC,A woman lives as a modern nomad after economic collapse.,2020,7
+20,1,20,Black Panther,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAFUlEQVR42mP8/5/hPwMECBAgAAAAAP8/AOMAAAAASUVORK5CYII=,A king defends his hidden African nation from threats.,2018,8
+21,4,21,The Grand Budapest Hotel,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAFUlEQVR42mP8z8DwnwEIBAQYAAACAAAA4P8H4gAAAAASUVORK5CYII=,A concierge navigates chaos in a quirky European hotel.,2014,8
+22,8,22,Get Out,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAFUlEQVR42mNgYGD4zwABBgYGBgYAAACo/wfiAAAAAElFTkSuQmCC,A man uncovers sinister secrets at his girlfriend’s family estate.,2017,8
+23,2,23,Moonlight,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAFUlEQVR42mP8/5/hPwMECBAgAAAAAP8/AOMAAAAASUVORK5CYII=,A young man navigates identity and love in Miami.,2016,8
+24,5,24,We Need to Talk About Kevin,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAFUlEQVR42mP8z8DwnwEIBAQYAAACAAAA4P8H4gAAAAASUVORK5CYII=,A mother grapples with her disturbed son’s actions.,2011,7
+25,7,25,The Lord of the Rings: The Fellowship of the Ring,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAFUlEQVR42mNgYGD4zwABBgYGBgYAAACo/wfiAAAAAElFTkSuQmCC,A hobbit embarks on a quest to destroy a powerful ring.,2001,9
+26,1,11,Terminator 2: Judgment Day,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAFUlEQVR42mP8/5/hPwMECBAgAAAAAP8/AOMAAAAASUVORK5CYII=,A cyborg protects a boy from a deadly assassin.,1991,8
+27,2,6,Taxi Driver,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAFUlEQVR42mP8z8DwnwEIBAQYAAACAAAA4P8H4gAAAAASUVORK5CYII=,A disturbed veteran becomes a vigilante in New York.,1976,8
+28,5,7,Gone Girl,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAFUlEQVR42mNgYGD4zwABBgYGBgYAAACo/wfiAAAAAElFTkSuQmCC,A woman’s disappearance reveals dark secrets in her marriage.,2014,8
+29,6,12,Life of Pi,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAFUlEQVR42mP8/5/hPwMECBAgAAAAAP8/AOMAAAAASUVORK5CYII=,A boy survives a shipwreck with a tiger on a lifeboat.,2012,7
+30,2,13,Marie Antoinette,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAFUlEQVR42mP8z8DwnwEIBAQYAAACAAAA4P8H4gAAAAASUVORK5CYII=,The young queen navigates life at Versailles.,2006,6
+31,3,14,Gladiator,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAFUlEQVR42mNgYGD4zwABBgYGBgYAAACo/wfiAAAAAElFTkSuQmCC,A betrayed general seeks revenge in ancient Rome.,2000,8
+32,7,15,The Shape of Water,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAFUlEQVR42mP8/5/hPwMECBAgAAAAAP8/AOMAAAAASUVORK5CYII=,A mute woman falls for a mysterious aquatic creature.,2017,7
+33,2,16,13th,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAFUlEQVR42mP8z8DwnwEIBAQYAAACAAAA4P8H4gAAAAASUVORK5CYII=,A documentary on mass incarceration in the U.S.,2016,8
+34,4,18,Thor: Ragnarok,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAFUlEQVR42mNgYGD4zwABBgYGBgYAAACo/wfiAAAAAElFTkSuQmCC,Thor teams up to save Asgard from destruction.,2017,7
+35,2,19,The Rider,iVBORw0KGgoAAAANSUhEUgXXXXXXCAYAAACNMs+9AAAAFUlEQVR42mP8/5/hPwMECBAgAAAAAP8/AOMAAAAASUVORK5CYII=,A young cowboy faces life after a rodeo injury.,2017,7
+36,1,20,Creed,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAFUlEQVR42mP8z8DwnwEIBAQYAAACAAAA4P8H4gAAAAASUVORK5CYII=,A young boxer trains under a legendary mentor.,2015,7
+37,4,21,Moonrise Kingdom,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAFUlEQVR42mNgYGD4zwABBgYGBgYAAACo/wfiAAAAAElFTkSuQmCC,Two young lovers run away on a whimsical island.,2012,7
+38,8,22,Us,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAFUlEQVR42mP8/5/hPwMECBAgAAAAAP8/AOMAAAAASUVORK5CYII=,A family faces their doppelgängers in a chilling vacation.,2019,7
+39,2,23,If Beale Street Could Talk,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAFUlEQVR42mP8z8DwnwEIBAQYAAACAAAA4P8H4gAAAAASUVORK5CYII=,A woman fights to free her wrongly imprisoned lover.,2018,7
+40,5,24,You Were Never Really Here,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAFUlEQVR42mNgYGD4zwABBgYGBgYAAACo/wfiAAAAAElFTkSuQmCC,A traumatized veteran rescues a girl from trafficking.,2017,7
+41,7,25,The Hobbit: An Unexpected Journey,iVBORw0KGgoAAAANSUhEUgXXXXXXCAYAAACNMs+9AAAAFUlEQVR42mP8/5/hPwMECBAgAAAAAP8/AOMAAAAASUVORK5CYII=,A hobbit joins a quest to reclaim a dragon’s treasure.,2012,7
+42,1,1,The Dark Knight,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAFUlEQVR42mP8z8DwnwEIBAQYAAACAAAA4P8H4gAAAAASUVORK5CYII=,Batman faces a chaotic criminal mastermind in Gotham.,2008,9
+43,5,7,Se7en,iVBORw0KGgoAAAANSUhEUgXXXXXXCAYAAACNMs+9AAAAFUlEQVR42mNgYGD4zwABBgYGBgYAAACo/wfiAAAAAElFTkSuQmCC,Two detectives hunt a serial killer with a twisted moral code.,1995,8
+44,3,5,Arrival,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAFUlEQVR42mP8/5/hPwMECBAgAAAAAP8/AOMAAAAASUVORK5CYII=,A linguist decodes an alien language to prevent global conflict.,2016,8
+45,2,9,Memories of Murder,iVBORw0KGgoAAAANSUhEUgXXXXXXCAYAAACNMs+9AAAAFUlEQVR42mP8z8DwnwEIBAQYAAACAAAA4P8H4gAAAAASUVORK5CYII=,Detectives investigate a series of unsolved murders in Korea.,2003,8
+46,1,10,Monster,iVBORw0KGgoAAAANSUhEUgXXXXXXCAYAAACNMs+9AAAAFUlEQVR42mNgYGD4zwABBgYGBgYAAACo/wfiAAAAAElFTkSuQmCC,A woman’s tragic life leads to a killing spree.,2003,7
+47,3,11,Titanic,iVBORw0KGgoAAAANSUhEUgXXXXXXCAYAAACNMs+9AAAAFUlEQVR42mP8/5/hPwMECBAgAAAAAP8/AOMAAAAASUVORK5CYII=,A romance unfolds aboard a doomed ocean liner.,1997,7
+48,6,4,La La Land,iVBORw0KGgoAAAANSUhEUgXXXXXXCAYAAACNMs+9AAAAFUlEQVR42mP8z8DwnwEIBAQYAAACAAAA4P8H4gAAAAASUVORK5CYII=,A musician and actress chase dreams and love in Los Angeles.,2016,8
+49,2,17,BlacKkKlansman,iVBORw0KGgoAAAANSUhEUgXXXXXXCAYAAACNMs+9AAAAFUlEQVR42mNgYGD4zwABBgYGBgYAAACo/wfiAAAAAElFTkSuQmCC,A Black cop infiltrates the KKK in the 1970s.,2018,7
+50,4,21,Fantastic Mr. Fox,iVBORw0KGgoAAAANSUhEUgXXXXXXCAYAAACNMs+9AAAAFUlEQVR42mP8/5/hPwMECBAgAAAAAP8/AOMAAAAASUVORK5CYII=,A clever fox outwits farmers in a whimsical heist.,2009,7

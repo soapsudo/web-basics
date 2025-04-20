@@ -1,4 +1,5 @@
 import sqlite3 from 'sqlite3';
+import { initialQuery } from './initial-queries.js';
 
 class DatabaseUtils {
 
@@ -32,16 +33,8 @@ class DatabaseUtils {
     }
 
     async createTables() {
-
-        let sql = `CREATE TABLE IF NOT EXISTS users (
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
-        name TEXT NOT NULL)`;
-
-        let sqlUsersTest = `INSERT OR IGNORE INTO users (id, name) VALUES (1, 'Test User')`;
-
         try{
-            await this.execute(sql);
-            await this.execute(sqlUsersTest);
+            await this.execute(initialQuery);
         }catch(error){
             console.log(error);
         }    

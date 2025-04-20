@@ -1,32 +1,20 @@
+import Movie from '../controllers/movie.js';
+import Watchlist from '../controllers/watchlist.js';
+import Genre from '../controllers/genre.js';
+import Director from '../controllers/director.js';
+import Actor from '../controllers/actor.js';
+
 class Router{
 
     constructor(app, databaseUtils){
         this.app = app;
-        this.databaseUtils = databaseUtils;
+        this.movie = new Movie(databaseUtils);
     }
 
     loadRoutes(){
-
-        this.app.get('/', (req, res) => {
-            res.send('Hello from the backend!');
-          });
-      
-        this.app.get('/users', async (req, res) => {
-            
-            try{
-              let response = await this.databaseUtils.fetchAll(`SELECT * FROM users`);
-              res.send(response);
-      
-            }catch(error){
-              res.send(error);
-            }
-      
-          });
+        this.app.get('/movies', this.movie.getAll);  
 
     }
-
-
-
 }
 
 export default Router;
