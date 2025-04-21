@@ -1,2 +1,4 @@
 @import url("global.css");
-@import url("header-style.css");
+@import url("./extensions/header-style.css");
+@import url("./extensions/footer-style.css");
+@import url("./pages/movies.css");
