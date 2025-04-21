@@ -41,6 +41,7 @@ CREATE TABLE IF NOT EXISTS movie (
 );
 
 CREATE TABLE IF NOT EXISTS movie_actor(
+    movie_actor_id INTEGER PRIMARY KEY,
     movie_id INTEGER,
     actor_id INTEGER,
     FOREIGN KEY (movie_id) REFERENCES movie(movie_id) ON DELETE CASCADE,

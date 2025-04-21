@@ -22,6 +22,8 @@ class Router{
 
     loadMovieRoutes(){
         this.app.get('/movies', this.movie.getAll);  
+        this.app.get('/movies/:id', this.movie.getOne);
+        this.app.delete('/movies/:id', this.movie.deleteMovie);
 
     }
 }

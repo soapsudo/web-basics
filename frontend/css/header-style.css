@@ -1,0 +1,39 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: white;
+    color: black;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+.logo {
+    font-size: 1vw;
+    font-weight: bold;
+    padding-left: 50px;
+
+}
+.logo-img {
+    width: 40%; 
+    height: auto;
+}
+
+@media (min-width: 1024px) {
+    .logo-img {
+        width: 150px;
+    }
+}
+.menu {
+    display: flex;
+    gap: 50px;
+    padding-right: 50px;
+}
+.menu a {
+    text-decoration: none;
+    font-size: 1.25rem;
+    color: black;
+    font-weight: bold;
+}
+.menu a:hover {
+    text-decoration: underline;
+}
