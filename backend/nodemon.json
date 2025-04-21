@@ -1,7 +1,7 @@
 {
     "watch": [".", "./server", "./model", "./router"],
     "legacyWatch": true,
-    "ignore": ["node_modules", ".dockerignore", "Dockerfile"],
+    "ignore": ["node_modules", ".dockerignore", "Dockerfile", "database.sqlite", "database.sqlite.journal"],
     "ext": "js,json",
     "exec": "node index.js"
   }
