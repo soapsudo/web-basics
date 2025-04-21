@@ -1,4 +1,51 @@
-body {
+html, body {
     font-family: Arial, Helvetica, sans-serif;
+    height: 100%;
     margin: 0;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+main{
+    flex: 1;
+}
+
+.button{
+    border-radius: 5px;
+    padding: 10px;
+    background-color: #4a90e2;
+    border: #6495ed;
+    border-style: solid;
+    border-width: 1px;
+    font-size: 18px;
+    color: #FFFF;
+}
+
+.button:hover{
+    background-color: #357ABD;    
+}
+
+.button-red{
+    border-radius: 5px;
+    padding: 10px;
+    background-color: #e06666;
+    border: #ff6347;
+    border-style: solid;
+    border-width: 1px;
+    font-size: 18px;
+    color: #FFFF;
+}
+
+.button-red:hover{
+    background-color: #ff6347;
+}
+
+.text-input{
+    font-size: 18px;
+    padding: 9px;
+    border-radius: 5px;
+    border-style: solid;
 }

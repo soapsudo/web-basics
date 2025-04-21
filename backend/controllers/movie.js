@@ -8,8 +8,9 @@ class Movie extends DatabaseObject{
 
     getAll = async (req, res) => {
 
-        const sql = this.movieQuery();
-
+        const search = req.query.search;
+        const sql = this.movieQuery(null,search);
+        
         try {
             const movies = await this.db.fetchAll(sql);
             return res.status(200).json(movies);
@@ -59,11 +60,13 @@ class Movie extends DatabaseObject{
 
     }
 
-    movieQuery(id){
+    movieQuery(id = null, search = null){
 
         let where = ``;
+        let having = ``;
         
-        if(id) where = `WHERE movie.movie_id = ` + id;
+        if(id) where = `WHERE movie.movie_id = ${id}`;
+        if(search) having = `HAVING movie.movie_title LIKE '%${search}%'`;
         
         return `SELECT
                 movie.movie_id,
@@ -80,8 +83,9 @@ class Movie extends DatabaseObject{
                 INNER JOIN director ON movie.director_id = director.director_id
                 INNER JOIN movie_actor ON movie.movie_id = movie_actor.movie_id
                 INNER JOIN actor ON movie_actor.actor_id = actor.actor_id 
-                `+ where +`
+                ${where}
                 GROUP BY movie.movie_id
+                ${having}
                 ORDER BY movie.movie_title DESC;`;
     }
 

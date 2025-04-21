@@ -1,6 +1,6 @@
 {    
-    "watch": [".", "./server", "./model", "./router"],
-    "ignore": ["node_modules", ".dockerignore", "Dockerfile", "*.sqlite*", "database.sqlite*", "*/database.sqlite*"],
+    "verbose": true,
+    "ignore": ["node_modules", ".dockerignore", "Dockerfile", "*.sqlite*", "database.sqlite*", "*/database.sqlite*"],    
     "legacyWatch": true,
     "ext": "js,json",
     "exec": "node index.js"
