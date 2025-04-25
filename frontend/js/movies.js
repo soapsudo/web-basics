@@ -47,7 +47,6 @@ async function loadMovies() {
         ul.appendChild(li);
       });
   
-      movies.innerHTML = '';
       movies.appendChild(ul);
       
     } catch (error) {

@@ -14,33 +14,33 @@ main{
 }
 
 .button{
+    margin: 5px;
     border-radius: 5px;
-    padding: 10px;
-    background-color: #4a90e2;
-    border: #6495ed;
-    border-style: solid;
-    border-width: 1px;
+    padding: 10px 20px;
+    background-color:  #003399;
     font-size: 18px;
     color: #FFFF;
 }
 
 .button:hover{
-    background-color: #357ABD;    
+    background-color: #004de6;
+    transition: ease-in-out;
+    transition-duration: 0.3s;    
 }
 
 .button-red{
+    margin: 5px;
     border-radius: 5px;
-    padding: 10px;
-    background-color: #e06666;
-    border: #ff6347;
-    border-style: solid;
-    border-width: 1px;
+    padding: 10px 20px;
+    background-color:  #cc0000;
     font-size: 18px;
     color: #FFFF;
 }
 
 .button-red:hover{
-    background-color: #ff6347;
+    background-color:  #ff3333;
+    transition: ease-in-out;
+    transition-duration: 0.3s;    
 }
 
 .text-input{

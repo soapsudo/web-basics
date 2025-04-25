@@ -1,6 +1,6 @@
 import express from 'express';
 import cors from 'cors';
-import DatabaseUtils from './database-utils.js';
+import DatabaseUtils from '../models/database-utils.js';
 import Router from '../router/router.js';
 
 const app = express();

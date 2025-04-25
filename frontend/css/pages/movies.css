@@ -8,7 +8,7 @@
     display: flex;
     list-style-type: none;
     flex-wrap: wrap;
-    padding: 50px 100px 50px 100px;
+    padding: 50px 120px 50px 120px;
     margin: 0;
 }
 
@@ -18,14 +18,17 @@
     margin: 20px;
 }
 
-.movie-item :hover{
-    opacity: 75%;
-}
 
 .movie-item img {
     width: 100%;
     height: auto;
     display: block;
+}
+
+.movie-image:hover{
+    opacity: 75%;
+    transition: ease-in-out;
+    transition-duration: 0.3s;
 }
 
 .movie-title {
@@ -51,8 +54,11 @@
 }
 
 .search{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
     text-align: center;
-    padding: 50px 120px 50px 120px;
+    padding: 3.125rem 7.5rem;
 }
 
 

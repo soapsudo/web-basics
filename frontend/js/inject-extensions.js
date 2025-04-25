@@ -3,8 +3,8 @@ async function loadElements(){
     <header class="header">
         <div class="logo"><img class="logo-img" src="../images/logo.png" alt="Logo"></div>
         <nav class="menu">
-            <a href="../html/movies.html">Movies</a>
-            <a href="#watchlist">Watchlist</a>
+            <a class="header-element" href="../html/movies.html">Movies</a>
+            <a class="header-element" href="#watchlist">Watchlist</a>
         </nav>
     </header>
 `;

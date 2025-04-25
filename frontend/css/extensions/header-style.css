@@ -31,12 +31,19 @@
     display: flex;
     gap: 50px;
 }
-.menu a {
+
+.header-element{
+    background: linear-gradient(black 0 0)
+        bottom left/
+        var(--underline-width, 0%) 0.1em
+        no-repeat;
     text-decoration: none;
     font-size: 1.25rem;
     color: black;
     font-weight: bold;
+    transition: background-size 0.5s;
 }
-.menu a:hover {
-    text-decoration: underline;
+
+.header-element:hover{
+    --underline-width: 100%;
 }
