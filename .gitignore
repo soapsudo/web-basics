@@ -140,3 +140,4 @@ dist
 backend/database.sqlite
 backend/database.sqlite-journal
 backend/core
+backend/server/uploads
