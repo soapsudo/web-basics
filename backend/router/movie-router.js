@@ -8,10 +8,11 @@ class MovieRouter {
         this.movie = new Movie(this.databaseUtils);
     }
 
-    loadMovieRoutes(){
+    loadMovieRoutes(upload){
         this.app.get('/movies', this.movie.getAll);  
         this.app.get('/movies/:id', this.movie.getOne);
         this.app.delete('/movies/:id', this.movie.deleteMovie);
+        this.app.post('/movie', upload.single('image'), this.movie.addMovie);
     }
 
 }

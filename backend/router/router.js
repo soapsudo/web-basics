@@ -10,8 +10,8 @@ class Router{
         this.movieRouter = new MovieRouter(app, databaseUtils);
     }
 
-    loadRoutes(){
-        this.movieRouter.loadMovieRoutes();
+    loadRoutes(upload){
+        this.movieRouter.loadMovieRoutes(upload);
     }
 
 

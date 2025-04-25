@@ -1,6 +1,6 @@
-import DatabaseObject from "./database-object.js";
+import BaseController from "./base-controller.js";
 
-class Director extends DatabaseObject{
+class Director extends BaseController{
     constructor(databaseUtils){
         super(databaseUtils);
     }

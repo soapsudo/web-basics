@@ -1,22 +1,42 @@
-import DatabaseObject from "./database-object.js";
+import MovieModel from "../models/movie.js";
+import BaseController from "./base-controller.js";
 
-class Movie extends DatabaseObject{
+class Movie extends BaseController{
     
     constructor(databaseUtils){
         super(databaseUtils);
+        this.movieModel = new MovieModel(databaseUtils);
+    }
+
+    addMovie = async(req, res) => {
+        
+        if (!req.file) return res.status(400).json('No image uploaded');
+
+        const { movie_title, category, director, description, score, year } = req.body;
+
+        const movie = {
+            movie_title,
+            category,
+            director,
+            description,
+            score,
+            year,
+            image: `/uploads/${req.file.filename}`
+        };
+
+        res.json({ success: true, movie });
+
     }
 
     getAll = async (req, res) => {
 
         const search = req.query.search;
-        const sql = this.movieQuery(null,search);
+        const data = await this.movieModel.getAllMovies(null,search);
         
-        try {
-            const movies = await this.db.fetchAll(sql);
-            return res.status(200).json(movies);
-
-        } catch (error) {
-            return res.status(500).json(error.message);
+        if(data.error){
+            return res.status(400).json(data);
+        }else{
+            return res.status(200).json(data);
         }
     }
 
@@ -25,18 +45,18 @@ class Movie extends DatabaseObject{
         const parsedId = parseInt(req.params.id);
         if(isNaN(parsedId)) return res.status(400).json('Invalid ID provided');
         
-        const inRange = await this.isIdInRange(parsedId);
+        const inRange = await this.movieModel.isIdInRange(parsedId);
         if(inRange === false) return res.status(400).json('Invalid ID provided');
 
-        const sql = this.movieQuery(parsedId);
+        const movie = await this.movieModel.getOneMovie(parsedId);
 
-        try{
-            const movie = await this.db.fetchFirst(sql);
+        if(movie.error){
+            return res.status(500).json(movie);
+
+        }else{
             return res.status(200).json(movie);
-
-        }catch (error){
-            return res.status(500).json(error.message);
         }
+    
 
     }
 
@@ -45,66 +65,18 @@ class Movie extends DatabaseObject{
         const parsedId = parseInt(req.params.id);
         if(isNaN(parsedId)) return res.status(400).json('Invalid ID provided');
         
-        const inRange = await this.isIdInRange(parsedId);
+        const inRange = await this.movieModel.isIdInRange(parsedId);
         if(inRange === false) return res.status(400).json('Invalid ID provided');
         
-        const sql = `DELETE FROM movie WHERE movie_id = ` + parsedId;
+        const movie = await this.movieModel.deleteMovie(parsedId);
 
-        try{
-            await this.db.execute(sql);
-            return res.status(200).json('The movie with the given ID is deleted.');
+        if(movie){
+            return res.status(500).json(error);
 
-        }catch(error){
-            return res.status(500).json(error.message);
+        }else{
+            return res.status(200).json(movie);
         }
 
-    }
-
-    movieQuery(id = null, search = null){
-
-        let where = ``;
-        let having = ``;
-        
-        if(id) where = `WHERE movie.movie_id = ${id}`;
-        if(search) having = `HAVING movie.movie_title LIKE '%${search}%'`;
-        
-        return `SELECT
-                movie.movie_id,
-                movie.image,
-                movie.movie_title,
-                movie.release_year,
-                movie.score,
-                movie.description,
-                category.category_name,
-                director.first_name || ' ' || director.last_name AS director_name,
-                GROUP_CONCAT(DISTINCT actor.first_name || ' ' || actor.last_name) AS actors
-                FROM movie
-                INNER JOIN category ON movie.category_id = category.category_id
-                INNER JOIN director ON movie.director_id = director.director_id
-                INNER JOIN movie_actor ON movie.movie_id = movie_actor.movie_id
-                INNER JOIN actor ON movie_actor.actor_id = actor.actor_id 
-                ${where}
-                GROUP BY movie.movie_id
-                ${having}
-                ORDER BY movie.movie_title ASC;`;
-    }
-
-    async isIdInRange(id){
-
-        if(id < 1) return false;
-
-        let check;
-
-        try{
-            check = await this.db.fetchFirst(`SELECT movie_id FROM movie ORDER BY movie_id DESC`);
-            if(id > parseInt(check.movie_id)) return false;
-
-        }catch(error){
-            console.log(error.message);
-            return false;
-        }
-
-        return true;
     }
 
 }
