@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Mania</title>
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+    <div id="header"></div>
+
+    <section class="container-crud">
+        <h1>Add a new movie</h1>
+
+        <form id="add-movie" class="add-movie-form" action="POST">
+            <label for="movie_title">Movie title</label><br>            
+            <input id="movie_title" type="text" class="text-input form-input" placeholder="Something exciting..."><br>
+
+            <label for="image">Image</label><br>
+            <input id="image" type="file" class="file-input form-input" required><br>
+
+            <!--- Ik heb hier de categorieen hardcoded erin gezet, omdat het makkelijker is. In een ideale situatie zouden ze met een script dynamisch hier komen --->
+            <label for="category">Category</label><br>
+            <select id="category" class="select-input form-input">
+                <option value="1">Action</option>
+                <option value="2">Drama</option>
+                <option value="3">Science Fiction</option>
+                <option value="4">Comedy</option>
+                <option value="5">Thriller</option>
+                <option value="6">Romance</option>
+                <option value="7">Fantasy</option>
+                <option value="8">Horror</option>
+            </select><br>
+
+            <label for="director">Movie director</label><br>
+            <input id="director" type="text" class="text-input form-input" placeholder="Name and surname" required><br>
+
+            <label for="description">Description</label><br>
+            <textarea id="description" class="text-input form-input" rows="10" cols="25" placeholder="A fitting description..."></textarea><br>
+
+
+            <!--- Om mijn leven bij het valideren van deze form makkelijker te maken, weer hardcoded erin gezet --->
+            <label for="score">Score</label><br>
+            <select id="score" class="select-input form-input">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+            </select><br>
+            
+            <label for="year">Year of release</label><br>
+            <input id="year" type="date" class="text-input form-input" required><br>
+
+            <button class="button" type="submit">Submit</button>
+        </form>
+
+    </section>
+
+    <div id="footer"></div>
+    
+</body>
+    <script src="../js/inject-extensions.js"></script>
+    <script src="../js/add-movie.js" ></script>
+</html>

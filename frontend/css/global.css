@@ -13,11 +13,32 @@ main{
     flex: 1;
 }
 
+.form-input{
+    margin-bottom: 20px;
+    background-color: white;
+}
+
+
+.container{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    text-align: center;
+    padding: 50px 120px;
+}
+
+.container-crud{
+    text-align: left;
+    padding: 50px 120px;
+    display: block;
+}
+
 .button{
     margin: 5px;
     border-radius: 5px;
     padding: 10px 20px;
     background-color:  #003399;
+    border-style: none;
     font-size: 18px;
     color: #FFFF;
 }
@@ -33,6 +54,7 @@ main{
     border-radius: 5px;
     padding: 10px 20px;
     background-color:  #cc0000;
+    border-style: none;
     font-size: 18px;
     color: #FFFF;
 }
@@ -41,6 +63,18 @@ main{
     background-color:  #ff3333;
     transition: ease-in-out;
     transition-duration: 0.3s;    
+}
+
+.file-input{
+    padding-top: 5px;
+    font-size: 18px;
+}
+
+.select-input{
+    font-size: 18px;
+    padding: 9px 18px;
+    border-radius: 5px;
+    border-style: solid;
 }
 
 .text-input{

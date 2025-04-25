@@ -86,7 +86,7 @@ class Movie extends DatabaseObject{
                 ${where}
                 GROUP BY movie.movie_id
                 ${having}
-                ORDER BY movie.movie_title DESC;`;
+                ORDER BY movie.movie_title ASC;`;
     }
 
     async isIdInRange(id){
