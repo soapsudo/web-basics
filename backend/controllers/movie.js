@@ -10,21 +10,31 @@ class Movie extends BaseController{
 
     addMovie = async(req, res) => {
         
+        console.log(req.file);
+
         if (!req.file) return res.status(400).json('No image uploaded');
 
-        const { movie_title, category, director, description, score, year } = req.body;
+        const { movie_title, category, director_first_name, director_last_name, description, score, year } = req.body;
 
         const movie = {
             movie_title,
             category,
-            director,
+            director_first_name,
+            director_last_name,
             description,
             score,
             year,
-            image: `/uploads/${req.file.filename}`
+            image: `http://localhost:3000/uploads/${req.file.filename}`
         };
 
-        res.json({ success: true, movie });
+        const movieInsertData = await this.movieModel.addMovie(movie);
+
+        if(movieInsertData.movie_title){
+            return res.status(201).json(movieInsertData);
+
+        }else{
+            return res.status(500).json(movieInsertData);
+        }
 
     }
 

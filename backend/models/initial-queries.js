@@ -11,24 +11,24 @@ const tableNames = ['actor', 'category', 'director', 'movie_actor', 'movie', 'wa
 export const initialQuery = `
  
 CREATE TABLE IF NOT EXISTS director(
-    director_id INTEGER PRIMARY KEY,
+    director_id INTEGER PRIMARY KEY AUTOINCREMENT,
     first_name VARCHAR(255),
     last_name VARCHAR(255)
 );
 
 CREATE TABLE IF NOT EXISTS actor(
-    actor_id INTEGER PRIMARY KEY,
+    actor_id INTEGER PRIMARY KEY AUTOINCREMENT,
     first_name VARCHAR(255),
     last_name VARCHAR(255)
 );
 
 CREATE TABLE IF NOT EXISTS category(
-    category_id INTEGER PRIMARY KEY,
+    category_id INTEGER PRIMARY KEY AUTOINCREMENT,
     category_name VARCHAR(255)
 );
 
 CREATE TABLE IF NOT EXISTS movie (
-    movie_id INTEGER PRIMARY KEY, 
+    movie_id INTEGER PRIMARY KEY AUTOINCREMENT, 
     category_id INTEGER,
     director_id INTEGER,
     movie_title VARCHAR(255),
@@ -41,7 +41,7 @@ CREATE TABLE IF NOT EXISTS movie (
 );
 
 CREATE TABLE IF NOT EXISTS movie_actor(
-    movie_actor_id INTEGER PRIMARY KEY,
+    movie_actor_id INTEGER PRIMARY KEY AUTOINCREMENT,
     movie_id INTEGER,
     actor_id INTEGER,
     FOREIGN KEY (movie_id) REFERENCES movie(movie_id) ON DELETE CASCADE,

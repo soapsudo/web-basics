@@ -13,9 +13,18 @@ const __dirname = path.dirname(__filename);
 const uploadDir = path.join(__dirname, 'uploads');
 if (!fs.existsSync(uploadDir)) fs.mkdirSync(uploadDir);
 
-const upload = multer({
-  dest: uploadDir
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, uploadDir);
+  },
+  filename: function (req, file, cb) {
+    const ext = path.extname(file.originalname); 
+    const uniqueName = Date.now() + '-' + Math.round(Math.random() * 1e9) + ext;
+    cb(null, uniqueName);
+  }
 });
+
+const upload = multer({ storage });
 
 const app = express();
 const port = 3000;
@@ -30,10 +39,10 @@ class Server {
   startServer() {
     app.use(cors(this.corsOptions));
     //Ik moet in de API json responses teruggeven
-    app.use(express.json());
     app.use('/uploads', express.static(uploadDir));
+    app.use(express.json());
 
-    this.loadRouter(upload);
+    this.loadRouter();
 
     app.listen(port, () => {
       console.log(`Backend listening at http://localhost:${port}`);
@@ -42,7 +51,7 @@ class Server {
 
   loadRouter(){
     this.router = new Router(app, this.databaseUtils);
-    this.router.loadRoutes();
+    this.router.loadRoutes(upload);
   }
 
 
