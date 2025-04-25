@@ -139,3 +139,4 @@ dist
 #sqlite database
 backend/database.sqlite
 backend/database.sqlite-journal
+backend/core
