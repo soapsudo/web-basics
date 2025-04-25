@@ -1,31 +1,20 @@
-import Movie from '../controllers/movie.js';
 import Watchlist from '../controllers/watchlist.js';
 import Genre from '../controllers/genre.js';
 import Director from '../controllers/director.js';
 import Actor from '../controllers/actor.js';
+import MovieRouter from '../router/movie-router.js'
 
 class Router{
 
     constructor(app, databaseUtils){
-        this.app = app;
-        this.movie = new Movie(databaseUtils);
+        this.movieRouter = new MovieRouter(app, databaseUtils);
     }
 
     loadRoutes(){
-        this.loadMovieRoutes();
-        this.loadWatchlistRoutes();
+        this.movieRouter.loadMovieRoutes();
     }
 
-    loadWatchlistRoutes(){
 
-    }
-
-    loadMovieRoutes(){
-        this.app.get('/movies', this.movie.getAll);  
-        this.app.get('/movies/:id', this.movie.getOne);
-        this.app.delete('/movies/:id', this.movie.deleteMovie);
-
-    }
 }
 
 export default Router;
