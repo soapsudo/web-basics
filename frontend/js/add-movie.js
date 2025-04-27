@@ -1,6 +1,33 @@
 const actorList = document.getElementById('actor_list');
 let actorCount = 0;
  
+async function getActorsFromList() {
+
+     let actors = '';
+
+     const actorsFromList = actorList.children;
+
+     for(let i = 0; i < actorsFromList.length; i++){
+
+          const child = actorsFromList[i];
+
+          const childClone = child.cloneNode(true);
+          childClone.querySelector('.remove-actor').remove();
+          
+          const text = childClone.textContent.trim();
+
+          if(i !== actorsFromList.length - 1){
+               actors += text + ',';
+          }else{
+               actors += text;
+          }
+          
+     }
+
+     return actors;
+     
+}
+
 async function validateActors(){
      
      const actors = actorList.children;
@@ -71,6 +98,8 @@ async function addMovie() {
 
           const yearInput = form.querySelector('#year').value;
           const year = yearInput.split('-')[0];
+          
+          const actors = await getActorsFromList();
 
           formData.append('movie_title', form.querySelector('#movie_title').value);
           formData.append('image', form.querySelector('#image').files[0]); 
@@ -80,8 +109,7 @@ async function addMovie() {
           formData.append('description', form.querySelector('#description').value);
           formData.append('score', form.querySelector('#score').value);
           formData.append('year', year);
-
-          console.log(formData);
+          formData.append('actors', actors);
 
           const response = await fetch('http://localhost:3000/movie', {
                method: 'POST',
