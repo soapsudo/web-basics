@@ -12,7 +12,7 @@ function getAddMovieCard(){
 
   addMovieCard.innerHTML = `<a class="movie-card" href="../html/add-movie.html">
                               <div class="movie-item movie-item-add">
-                              <img src="../images/add.png" class="movie-image movie-image-add">
+                              <img src="../images/add.png" class="movie-image-add movie-image">
                               <div class="movie-title movie-add-title">Add new movie</div>
                               </div>
                             </a>

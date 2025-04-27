@@ -15,7 +15,6 @@ functionaliteiten, zie het document: `documentatie/Movie_Mania_Functioneel_Ontwe
 Documentatie voor deze applicatie bestaat uit:
 - Het functioneel ontwerp, waarin de context van de applicatie samen met UX/UI beschreven wordt: `documentatie/Movie_Mania_Functioneel_Ontwerp.pdf`
 - Technische documentatie samen met alle mogelijke API responses: `documentatie/Movie_Mania_API_specs.pdf` 
-- Testrapport waarin alle testcases uit het functioneel ontwerp getest zijn: `documentatie/Movie_Mania_Testrapport.pdf`   
 
 ## Het opstarten van de applicatie
 Deze applicatie kan op twee manieren worden opgestart:
@@ -33,7 +32,6 @@ Navigeer naar de `/backend` directory binnen deze map in een terminal en voer de
 - `npm start` - het opstarten van de backend API service op `http://localhost:3000`
 
 Vervolgens kan de website bekeken worden als het document `frontend/index.html` wordt geopend in de browser.
-
 
 ### Opstarten met Docker:
 Vereist: `docker` installatie op de machine, samen met `docker compose`
