@@ -44,6 +44,7 @@ CREATE TABLE IF NOT EXISTS movie_actor(
     movie_actor_id INTEGER PRIMARY KEY AUTOINCREMENT,
     movie_id INTEGER,
     actor_id INTEGER,
+    UNIQUE(movie_id, actor_id)
     FOREIGN KEY (movie_id) REFERENCES movie(movie_id) ON DELETE CASCADE,
     FOREIGN KEY (actor_id) REFERENCES actor(actor_id) ON DELETE CASCADE
 );

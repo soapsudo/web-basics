@@ -1,17 +1,22 @@
 import Model from './model.js'
 import DirectorModel from './director.js';
+import ActorModel from './actor.js';
+import { title } from 'process';
+import { join } from 'path';
 
 class MovieModel extends Model{
 
     constructor(db){
         super(db);
         this.director = new DirectorModel(db);
+        this.actor = new ActorModel(db);
     }
 
 
     async addMovie(movieData) {
 
         const director = await this.director.getDirector(movieData.director_first_name, movieData.director_last_name);
+        const actorNames = movieData.actors.split(',');
 
         let sql;
 
@@ -23,9 +28,16 @@ class MovieModel extends Model{
             sql = this.insertQuery(movieData, insertedDirector.director_id);
         }
 
+
         try {
-            const insert = await this.db.execute(sql);
-            return movieData;
+
+            const insert = await this.db.execute(sql);            
+            let insertedMovieData = await this.db.fetchFirst(this.moviesQuery(null, movieData.movie_title, `LEFT`));
+
+            const insertedActorsForMovie = await this.actor.insertActorsForMovie(actorNames, insertedMovieData.movie_id);
+
+            insertedMovieData = await this.db.fetchFirst(this.moviesQuery(null, movieData.movie_title));
+            return insertedMovieData;
 
         } catch (error) {
             return error;
@@ -77,10 +89,10 @@ class MovieModel extends Model{
 
     insertQuery(movieData, directorId){
         return `INSERT OR REPLACE INTO movie (category_id, director_id, movie_title, image, description, release_year, score)
-                VALUES ('${movieData.category}', '${directorId}', '${movieData.movie_title}', '${movieData.image}', '${movieData.description}', '${movieData.year}', '${movieData.score}')`;
+                VALUES ('${movieData.category}', '${directorId}', '${movieData.movie_title}', '${movieData.image}', '${movieData.description}', '${movieData.year}', '${movieData.score}');`;
     }
 
-    moviesQuery(id = null, search = null){
+    moviesQuery(id = null, search = null, joinType = 'INNER'){
 
         let where = ``;
         let having = ``;
@@ -99,10 +111,10 @@ class MovieModel extends Model{
                 director.first_name || ' ' || director.last_name AS director_name,
                 GROUP_CONCAT(DISTINCT actor.first_name || ' ' || actor.last_name) AS actors
                 FROM movie
-                LEFT JOIN category ON movie.category_id = category.category_id
-                LEFT JOIN director ON movie.director_id = director.director_id
-                LEFT JOIN movie_actor ON movie.movie_id = movie_actor.movie_id
-                LEFT JOIN actor ON movie_actor.actor_id = actor.actor_id 
+                ${joinType} JOIN category ON movie.category_id = category.category_id
+                ${joinType} JOIN director ON movie.director_id = director.director_id
+                ${joinType} JOIN movie_actor ON movie.movie_id = movie_actor.movie_id
+                ${joinType} JOIN actor ON movie_actor.actor_id = actor.actor_id 
                 ${where}
                 GROUP BY movie.movie_id
                 ${having}

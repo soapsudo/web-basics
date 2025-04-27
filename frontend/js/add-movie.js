@@ -67,7 +67,7 @@ async function addActor(){
                     
                     const actor = document.createElement('li');
                     actor.setAttribute('class', 'added-actor');
-                    actor.innerText = firstName.value + ' ' + lastName.value + ' ';
+                    actor.innerText = firstName.value.trim() + ' ' + lastName.value.trim() + ' ';
                     actor.appendChild(closeButton);
 
                     actorList.appendChild(actor);

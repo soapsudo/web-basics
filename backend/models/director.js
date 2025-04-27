@@ -8,15 +8,15 @@ class DirectorModel extends Model{
 
     async getDirector(firstName, lastName) {
         
-        const sql = `SELECT * FROM director WHERE first_name = ? AND last_name = ? LIMIT 1;`;
+        const sql = `SELECT * FROM director WHERE first_name = '${firstName}' AND last_name = '${lastName}' LIMIT 1;`;
     
         try {
-            const result = await this.db.fetchAll(sql, [firstName, lastName]);
+            const result = await this.db.fetchAll(sql);
     
             if (Array.isArray(result) && result.length > 0) {
                 return result[0];
             } else {
-                console.warn('No director found for:', firstName, lastName);
+                console.warn(`No director found for: ${firstName} ${lastName}, making a new entry...`);
                 return null;
             }
         } catch (error) {
@@ -28,16 +28,16 @@ class DirectorModel extends Model{
 
     async insertDirector(firstName, lastName) {
 
-        const sql = `INSERT OR REPLACE INTO director (first_name, last_name) VALUES (?, ?);`;
+        const sql = `INSERT OR REPLACE INTO director (first_name, last_name) VALUES ('${firstName}', '${lastName}');`;
     
         try {
-            await this.db.execute(sql, [firstName, lastName]);
+            await this.db.execute(sql);
             const inserted = await this.getDirector(firstName, lastName);
 
             return inserted;
 
         } catch (error) {
-            console.error('insertDirector error:', error);
+            console.error(`insertDirector error:`, error);
             return null;
         }
     }
