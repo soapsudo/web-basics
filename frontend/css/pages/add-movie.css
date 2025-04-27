@@ -1,0 +1,22 @@
+.remove-actor{
+    border-style: none;
+    border-radius: 5px;
+    font-size: 15px;
+    color: white;
+    background-color: #cc0000;
+}
+
+ .remove-actor:hover{
+    background-color: #ff3333;
+    transition: ease-in-out;
+    transition-duration: 0.3s;    
+ }
+
+ .added-actor-list{
+    margin-bottom: 25px;
+ }
+
+ .added-actor{
+    padding: 5px;
+    font-size: 18px;
+ }

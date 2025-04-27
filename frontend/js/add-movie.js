@@ -1,20 +1,56 @@
-const actorList = document.getElementById(`actor_list`);
+const actorList = document.getElementById('actor_list');
+let actorCount = 0;
+ 
+async function validateActors(){
+     
+     const actors = actorList.children;
+
+     if(actors.length > 0) return true;
+
+     return false;
+}
+
+async function removeActor(e){
+
+     e.preventDefault();
+
+     const actorLi = e.target.closest('li');
+
+     if(actorLi) actorLi.remove();
+}
 
 async function addActor(){
 
-     document.getElementById(`add-actor`).onclick = function() {
+     document.getElementById('add-actor').onclick = async function() {
 
-          const firstName = document.getElementById(`actor_first_name`);
-          const lastName = document.getElementById(`actor_last_name`);
+          const firstName = document.getElementById('actor_first_name');
+          const lastName = document.getElementById('actor_last_name');
 
-          if(firstName.value !== null && firstName.value !== ``
-                && lastName.value !== null && firstName.value !==``){
+          if(firstName.value !== null && firstName.value !== ''
+                && lastName.value !== null && firstName.value !== ''){
 
-                    const actor = document.createElement(`li`);
+                    actorCount++;
 
-                    actor.innerText(firstName.value + ` ` + lastName.value);
+                    const closeButton = document.createElement('button');
+                    closeButton.innerHTML = '&#x2715;';
+                    closeButton.setAttribute('class', 'remove-actor');
+                    closeButton.setAttribute('id', 'actor-' + actorCount);
+                    closeButton.setAttribute('type', 'button');
+                    closeButton.addEventListener('click', removeActor);
+                    
+                    const actor = document.createElement('li');
+                    actor.setAttribute('class', 'added-actor');
+                    actor.innerText = firstName.value + ' ' + lastName.value + ' ';
+                    actor.appendChild(closeButton);
+
                     actorList.appendChild(actor);
+                    actorList.setAttribute('style', 'display: block');
 
+                    firstName.value = '';
+                    lastName.value = '';
+
+               }else{
+                    alert('An actor needs to have a full name!');
                }
 
      }
@@ -24,37 +60,49 @@ async function addActor(){
 async function addMovie() {
 
     document.getElementById(`add-movie`).addEventListener(`submit`, async function(e){
+        
         e.preventDefault();
 
-        const form = e.target;
-        const formData = new FormData();
+        const validation = await validateActors();
 
-        const yearInput = form.querySelector('#year').value;
-        const year = yearInput.split('-')[0];
+        if(validation){
+          const form = e.target;
+          const formData = new FormData();
 
-        formData.append('movie_title', form.querySelector('#movie_title').value);
-        formData.append('image', form.querySelector('#image').files[0]); 
-        formData.append('category', form.querySelector('#category').value);
-        formData.append('director_first_name', form.querySelector('#director_first_name').value);
-        formData.append('director_last_name',  form.querySelector('#director_last_name').value);
-        formData.append('description', form.querySelector('#description').value);
-        formData.append('score', form.querySelector('#score').value);
-        formData.append('year', year);
+          const yearInput = form.querySelector('#year').value;
+          const year = yearInput.split('-')[0];
 
-        console.log(formData);
+          formData.append('movie_title', form.querySelector('#movie_title').value);
+          formData.append('image', form.querySelector('#image').files[0]); 
+          formData.append('category', form.querySelector('#category').value);
+          formData.append('director_first_name', form.querySelector('#director_first_name').value);
+          formData.append('director_last_name',  form.querySelector('#director_last_name').value);
+          formData.append('description', form.querySelector('#description').value);
+          formData.append('score', form.querySelector('#score').value);
+          formData.append('year', year);
 
-        const response = await fetch('http://localhost:3000/movie', {
-             method: 'POST',
-             body: formData
-        });
+          console.log(formData);
 
-        if (response.ok) {
-             alert('Movie uploaded successfully!');
-        } else {
-             alert('Something went wrong');
+          const response = await fetch('http://localhost:3000/movie', {
+               method: 'POST',
+               body: formData
+          });
+
+          if (response.ok) {
+               alert('Movie uploaded successfully!');
+          } else {
+               alert('Something went wrong');
+          }
+
+        }else{
+          alert('A movie needs to have atleast one actor!');
         }
+
+
+        
         
     });
 }
 
+addActor();
 addMovie();
