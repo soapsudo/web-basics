@@ -15,6 +15,27 @@ const removedActors = [];
 const actorList = document.getElementById('actor_list');
 let actorCount = 0;
  
+async function addDeleteListener(){
+     document.getElementById(`delete-movie`).addEventListener('click', async function(e){
+
+          e.preventDefault();
+
+          try{
+               const response = await fetch(`http://localhost:3000/movies/${movieId}`, {
+                    method: 'DELETE'
+               });
+
+               const status = await response.status;
+               
+               if(status !== 200) new ErrorHandler(false, await response.json(), document);
+               else new ErrorHandler(true, `Movie deleted successfully.`, document);
+
+          }catch(error){
+               new ErrorHandler(false, error.message, document);
+          }
+
+     });
+}
 
 async function getActorsFromList(list) {
 
@@ -311,6 +332,7 @@ async function setFieldValues(){
     }
 }
 
+addDeleteListener();
 addActorListener();
 addMovie();
 setFieldValues();

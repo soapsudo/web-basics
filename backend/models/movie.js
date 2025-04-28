@@ -86,8 +86,8 @@ class MovieModel extends Model{
         const sql = `DELETE FROM movie WHERE movie_id = ${id}`;
 
         try{
-            const deleted = await this.db.execute(sql);
-            return deleted;
+            await this.db.execute(sql);
+            return null;
 
         }catch (error){
             throw new Error(error.message);
