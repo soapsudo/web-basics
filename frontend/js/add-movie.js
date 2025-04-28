@@ -1,3 +1,5 @@
+import ErrorHandler from "./error-handler.js";
+
 const actorList = document.getElementById('actor_list');
 let actorCount = 0;
  
@@ -28,7 +30,7 @@ async function getActorsFromList() {
      
 }
 
-async function validateActors(){
+function validateActors(){
      
      const actors = actorList.children;
 
@@ -77,7 +79,7 @@ async function addActor(){
                     lastName.value = '';
 
                }else{
-                    alert('An actor needs to have a full name!');
+                    new ErrorHandler(false, 'An actor needs to have a full name!', document);
                }
 
      }
@@ -90,7 +92,7 @@ async function addMovie() {
         
         e.preventDefault();
 
-        const validation = await validateActors();
+        const validation = validateActors();
 
         if(validation){
           const form = e.target;
@@ -116,19 +118,15 @@ async function addMovie() {
                body: formData
           });
 
-          if (response.ok) {
-               alert('Movie uploaded successfully!');
+          if (response.status === 201) {
+               new ErrorHandler(true, 'Movie added successfully!', document);
           } else {
-               alert('Something went wrong');
+               new ErrorHandler(false, 'Something went wrong when adding this movie.', document);
           }
 
         }else{
-          alert('A movie needs to have atleast one actor!');
+          new ErrorHandler(false, 'A movie needs to have atleast one actor!', document);
         }
-
-
-        
-        
     });
 }
 

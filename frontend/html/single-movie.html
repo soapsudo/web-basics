@@ -15,15 +15,15 @@
             <div class="single-movie-details">
                 <h1 id="single-movie-title">Movie Title</h1>
                 <div class="button-group">
-                    <button class="button">Edit</button>
-                    <button class="button-green">Add to watchlist</button>
+                    <button id="single-movie-edit-button" class="button">Edit</button>
+                    <button id="single-movie-add-to-watchlist" class="button-green">Add to watchlist</button>
                 </div>
                 <p><strong>Description: </strong> <a class="dynamic-single-movie-data" id="desc">This is the movie description text.</a></p>
                 <p><strong>Actors: </strong><a class="dynamic-single-movie-data" id="actors">Sam Worthington, Zoe Saldana </a></p>
                 <p><strong>Release Year: </strong><a class="dynamic-single-movie-data" id="year">2009</a></p>
                 <p><strong>Genre: </strong><a class="dynamic-single-movie-data" id="genre">Sci-Fi</a></p>
                 <p><strong>Director: </strong><a class="dynamic-single-movie-data" id="director">James Cameron</a></p>
-                <p><strong>Score: </strong> <a class="dynamic-single-movie-data"id="score">/10</a></p>
+                <p><strong>Score: </strong> <a class="dynamic-single-movie-data"id="score"></a>/10</p>
             </div>
             <div class="single-movie-image">
                 <img id="poster" src="https://m.media-amazon.com/images/S/pv-target-images/b0c21f2ae75daf4f63ed7ee6fb7f0053b139327fad8e2decb716c7294ae6d611._SX1080_FMjpg_.jpg" alt="Movie Poster">
@@ -32,7 +32,8 @@
     </section>
     
     <div id="footer"></div>
+    <div id="popup"></div>
 </body>
     <script src="../js/inject-extensions.js"></script>
-    <script src="../js/single-movie.js"></script>
+    <script type="module" src="../js/single-movie.js"></script>
 </html>

@@ -15,7 +15,13 @@
         <form id="movies-search" class="search-form" action="POST">
             <input id="movies-search-input" class="text-input" type="text" placeholder="Search by title...">
             <button class="button" type="submit">Submit</button>
+            
+            <div class="button-group" style="justify-content: center; gap: 25px;">
+                <button type="button" id="a-z" class="button-white">Sort A-Z</button>
+                <button type="button" id="z-a" class="button-white">Sort Z-A</button>
+            </div>
         </form>
+        
     </section>
 
     <div id="movies">
@@ -24,8 +30,10 @@
     </div>
 
     <div id="footer"></div>
+    <div id="popup"></div>
+
 </body>
     <script src="../js/inject-extensions.js"></script>
-    <script src="../js/movies.js"></script>
-    <script src="../js/movies-search.js"></script>
+    <script type="module" src="../js/movies.js"></script>
+    <script src="../js/movies-search-sort.js"></script>
 </html>

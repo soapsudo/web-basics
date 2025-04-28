@@ -10,26 +10,26 @@
     <div id="header"></div>
 
     <section class="container-crud">
-        <h1>Add a new movie</h1>
+        <h1>Edit an existing movie</h1>
 
         <form id="add-movie" class="add-movie-form" action="POST">
             <label for="movie_title">Movie title</label><br>            
             <input id="movie_title" type="text" class="text-input form-input" placeholder="Something exciting..."><br>
 
-            <label for="image">Image</label><br>
-            <input id="image" type="file" class="file-input form-input" required><br>
+            <label id="image-label" for="image">Image</label><br>
+            <input id="image" type="file" class="file-input form-input"><br>
 
             <!--- Ik heb hier de categorieen hardcoded erin gezet, omdat het makkelijker is. In een ideale situatie zouden ze met een script dynamisch hier komen --->
             <label for="category">Category</label><br>
             <select id="category" class="select-input form-input">
-                <option value="1">Action</option>
-                <option value="2">Drama</option>
-                <option value="3">Science Fiction</option>
-                <option value="4">Comedy</option>
-                <option value="5">Thriller</option>
-                <option value="6">Romance</option>
-                <option value="7">Fantasy</option>
-                <option value="8">Horror</option>
+                <option value="1" id="Action">Action</option>
+                <option value="2" id="Drama">Drama</option>
+                <option value="3" id="Science Fiction">Science Fiction</option>
+                <option value="4" id="Comedy">Comedy</option>
+                <option value="5" id="Thriller">Thriller</option>
+                <option value="6" id="Romance">Romance</option>
+                <option value="7" id="Fantasy">Fantasy</option>
+                <option value="8" id="Horror">Horror</option>
             </select><br>
 
             <label for="director">Movie director</label><br>
@@ -52,16 +52,16 @@
             <!--- Om mijn leven bij het valideren van deze form makkelijker te maken, weer hardcoded erin gezet --->
             <label for="score">Score</label><br>
             <select id="score" class="select-input form-input">
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
-                <option value="6">6</option>
-                <option value="7">7</option>
-                <option value="8">8</option>
-                <option value="9">9</option>
-                <option value="10">10</option>
+                <option value="1" id="1">1</option>
+                <option value="2" id="2">2</option>
+                <option value="3" id="3">3</option>
+                <option value="4" id="4">4</option>
+                <option value="5" id="5">5</option>
+                <option value="6" id="6">6</option>
+                <option value="7" id="7">7</option>
+                <option value="8" id="8">8</option>
+                <option value="9" id="9">9</option>
+                <option value="10" id="10">10</option>
             </select><br>
             
             <label for="year">Year of release</label><br>
@@ -78,5 +78,5 @@
 
 </body>
     <script src="../js/inject-extensions.js"></script>
-    <script type="module" src="../js/add-movie.js" ></script>
+    <script type="module" src="../js/edit-movie.js" ></script>
 </html> 

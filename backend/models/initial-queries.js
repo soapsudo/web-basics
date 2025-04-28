@@ -31,7 +31,7 @@ CREATE TABLE IF NOT EXISTS movie (
     movie_id INTEGER PRIMARY KEY AUTOINCREMENT, 
     category_id INTEGER,
     director_id INTEGER,
-    movie_title VARCHAR(255),
+    movie_title VARCHAR(255) UNIQUE,
     image BLOB,
     description TEXT,
     release_year INTEGER,
@@ -45,14 +45,14 @@ CREATE TABLE IF NOT EXISTS movie_actor(
     movie_id INTEGER,
     actor_id INTEGER,
     UNIQUE(movie_id, actor_id)
-    FOREIGN KEY (movie_id) REFERENCES movie(movie_id) ON DELETE CASCADE,
-    FOREIGN KEY (actor_id) REFERENCES actor(actor_id) ON DELETE CASCADE
+    FOREIGN KEY (movie_id) REFERENCES movie(movie_id) ON UPDATE CASCADE ON DELETE CASCADE,
+    FOREIGN KEY (actor_id) REFERENCES actor(actor_id) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 CREATE TABLE IF NOT EXISTS watchlist(
     movie_id INTEGER,
     watched INTEGER(1),
-    FOREIGN KEY (movie_id) REFERENCES movie(movie_id) ON DELETE CASCADE
+    FOREIGN KEY (movie_id) REFERENCES movie(movie_id) ON UPDATE CASCADE ON DELETE CASCADE
 );
 `;
 

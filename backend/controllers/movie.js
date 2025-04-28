@@ -10,16 +10,14 @@ class Movie extends BaseController {
 
     addMovie = async (req, res) => {
 
-        console.log(req.file);
-
         if (!req.file) {
-            return res.status(400).json({ error: 'No image uploaded' });
+            return res.status(400).json({ message: 'No image uploaded' });
         }
 
         const { movie_title, category, director_first_name, director_last_name, description, score, year, actors } = req.body;
 
         if (!movie_title || !category || !director_first_name || !director_last_name || !description || !score || !year || !actors) {
-            return res.status(400).json({ error: 'All fields are required' });
+            return res.status(400).json({ message: 'All fields are required' });
         }
 
         try {
@@ -41,11 +39,11 @@ class Movie extends BaseController {
             if (movieInsertData.movie_id) {
                 return res.status(201).json(movieInsertData);
             } else {
-                return res.status(500).json({ error: 'Failed to create movie: No movie ID returned' });
+                return res.status(500).json({ message: 'Failed to create movie: No movie ID returned' });
             }
         } catch (error) {
             console.error('Error creating movie:', error.message);
-            return res.status(500).json({ error: `Failed to create movie: ${error.message}` });
+            return res.status(500).json({ message: `Failed to create movie: ${error.message}` });
         }
 
     }
@@ -53,10 +51,12 @@ class Movie extends BaseController {
     getAll = async (req, res) => {
 
         const search = req.query.search;
-        const data = await this.movieModel.getAllMovies(null, search);
+        const sort = req.query.sort;
+
+        const data = await this.movieModel.getAllMovies(null, search, sort);
 
         if (data.error) {
-            return res.status(400).json(data);
+            return res.status(500).json({message: data});
         } else {
             return res.status(200).json(data);
         }
@@ -65,10 +65,10 @@ class Movie extends BaseController {
     getOne = async (req, res) => {
 
         const parsedId = parseInt(req.params.id);
-        if (isNaN(parsedId)) return res.status(400).json('Invalid ID provided');
+        if (isNaN(parsedId)) return res.status(400).json({message: 'Invalid ID provided'});
 
         const inRange = await this.movieModel.isIdInRange(parsedId);
-        if (inRange === false) return res.status(400).json('Invalid ID provided');
+        if (inRange === false) return res.status(400).json({message: 'Invalid ID provided'});
 
         const movie = await this.movieModel.getOneMovie(parsedId);
 
@@ -85,10 +85,10 @@ class Movie extends BaseController {
     deleteMovie = async (req, res) => {
 
         const parsedId = parseInt(req.params.id);
-        if (isNaN(parsedId)) return res.status(400).json('Invalid ID provided');
+        if (isNaN(parsedId)) return res.status(400).json({message: 'Invalid ID provided'});
 
         const inRange = await this.movieModel.isIdInRange(parsedId);
-        if (inRange === false) return res.status(400).json('Invalid ID provided');
+        if (inRange === false) return res.status(400).json({message: 'Invalid ID provided'});
 
         const movie = await this.movieModel.deleteMovie(parsedId);
 

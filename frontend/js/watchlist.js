@@ -17,30 +17,13 @@ function getUrl(){
   return `http://localhost:3000/movies`;
 }
 
-function getAddMovieCard(){
-
-  const addMovieCard = document.createElement(`li`);
-
-  addMovieCard.innerHTML = `<a class="movie-card" href="../html/add-movie.html">
-                              <div class="movie-item movie-item-add">
-                              <img src="../images/add.png" class="movie-image-add movie-image">
-                              <div class="movie-title movie-add-title">Add a new movie</div>
-                              </div>
-                            </a>
-                        `;
-  return addMovieCard;
-}
-
 async function loadMovies() {
     try {
       const response = await fetch(getUrl());  
       const data = await response.json();
       const movies = document.getElementById(`movies`);
       const ul = document.createElement(`ul`);
-      const addMovie = getAddMovieCard();
-
       ul.className = `movie-display`;
-      ul.appendChild(addMovie);
   
       data.forEach(movie => {
         const div = document.createElement(`div`)
