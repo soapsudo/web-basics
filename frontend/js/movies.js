@@ -31,10 +31,12 @@ function getAddMovieCard(){
   return addMovieCard;
 }
 
+//TODO error handling!
 async function loadMovies() {
     try {
       const response = await fetch(getUrl());  
       const data = await response.json();
+
       const movies = document.getElementById(`movies`);
       const ul = document.createElement(`ul`);
       const addMovie = getAddMovieCard();

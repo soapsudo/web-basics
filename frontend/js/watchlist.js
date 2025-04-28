@@ -1,30 +1,30 @@
 import ErrorHandler from "./error-handler.js";
 
 const params = new URLSearchParams(window.location.search);
-const search = params.get(`search`);
-const sort = params.get(`sort`);
+const filter = params.get(`filter`);
 
 function getUrl(){
-  if(search){
-    return `http://localhost:3000/movies?search=${search}`;
-
+  if(filter){
+    return `http://localhost:3000/watchlist?filter=${filter}`;
   } 
-  
-  if(sort){
-    return `http://localhost:3000/movies?sort=${sort}`;
-  }
 
-  return `http://localhost:3000/movies`;
+  return `http://localhost:3000/watchlist`;
 }
 
 async function loadMovies() {
-    try {
-      const response = await fetch(getUrl());  
-      const data = await response.json();
+  try {
+    const response = await fetch(getUrl());
+    const data = await response.json();
+
+    if (response.status !== 200) {
+      new ErrorHandler(false, data.message, document);
+    }
+    else {
+
       const movies = document.getElementById(`movies`);
       const ul = document.createElement(`ul`);
       ul.className = `movie-display`;
-  
+
       data.forEach(movie => {
         const div = document.createElement(`div`)
         div.className = `movie-item`;
@@ -35,7 +35,7 @@ async function loadMovies() {
         const score = document.createElement(`div`);
         const link = document.createElement(`a`);
 
-        link.href = `../html/single-movie.html?id=${encodeURIComponent(movie.movie_id)}`;
+        link.href = `../html/single-movie-watchlist.html?id=${encodeURIComponent(movie.movie_id)}`;
         link.className = `movie-card`;
 
         title.className = `movie-title`;
@@ -57,13 +57,13 @@ async function loadMovies() {
         li.appendChild(link);
         ul.appendChild(li);
       });
-  
+
       movies.appendChild(ul);
-      
-    } catch (error) {
-        new ErrorHandler(false, `Error fetching movies: ${error}`, document);
     }
+  } catch (error) {
+    new ErrorHandler(false, `Error fetching movies: ${error}`, document);
   }
+}
 
 
   

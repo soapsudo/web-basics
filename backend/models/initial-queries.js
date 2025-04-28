@@ -50,7 +50,7 @@ CREATE TABLE IF NOT EXISTS movie_actor(
 );
 
 CREATE TABLE IF NOT EXISTS watchlist(
-    movie_id INTEGER,
+    movie_id INTEGER UNIQUE,
     watched INTEGER(1),
     FOREIGN KEY (movie_id) REFERENCES movie(movie_id) ON UPDATE CASCADE ON DELETE CASCADE
 );

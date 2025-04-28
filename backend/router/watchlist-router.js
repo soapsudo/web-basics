@@ -9,8 +9,10 @@ class WatchlistRouter {
     }
 
     loadWatchlistRoutes(){
+        this.app.get('/watchlist', this.watchlist.getAllFromWatchlist);
         this.app.get('/watchlist/:movieid', this.watchlist.getFromWatchlist)
-        this.app.put('/watchlist/:movieid', this.watchlist.addToWatchlist);  
+        this.app.put('/watchlist/:movieid', this.watchlist.addToWatchlist);
+        this.app.put('/watchlist/mark-as-watched/:movieid', this.watchlist.markAsWatched);  
         this.app.delete('/watchlist/:movieid', this.watchlist.removeFromWatchlist);
     }
 
