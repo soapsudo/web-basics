@@ -1,5 +1,3 @@
-import ErrorHandler from "./error-handler.js";
-
 const params = new URLSearchParams(window.location.search);
 const search = params.get(`search`);
 const sort = params.get(`sort`);

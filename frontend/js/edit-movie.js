@@ -5,8 +5,6 @@
 //maar ik heb ervoor gekozen om dit in een aparte bestand op te nemen. 
 //Netheid in de file naming en foutbestendigheid waren de voornamelijkste redenen om dit te doen. 
 
-import ErrorHandler from "./error-handler.js";
-
 const params = new URLSearchParams(window.location.search);
 const movieId = params.get(`id`);
 

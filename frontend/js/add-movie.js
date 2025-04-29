@@ -1,5 +1,3 @@
-import ErrorHandler from "./error-handler.js";
-
 const actorList = document.getElementById('actor_list');
 let actorCount = 0;
  
