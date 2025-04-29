@@ -43,7 +43,6 @@ class MovieModel extends Model{
             const insertedActorsForMovie = await this.actor.insertActorsForMovie(actorNames, insertedMovieData.movie_id);
 
             insertedMovieData = await this.db.fetchFirst(this.moviesQuery(null, movieData.movie_title));
-            console.log(insertedMovieData);
 
             return insertedMovieData;
 

@@ -8,14 +8,26 @@ class ActorModel extends Model {
 
     async insertActorsForMovie(actors, movieId) {
     
-    
         for (let i = 0; i < actors.length; i++) {
 
             const fullName = actors[i].trim().split(' ');
-            const firstName = fullName[0];
-            const lastName = fullName[1];
-    
-            const existingActor = await this.getActorByFullName(firstName, lastName);
+
+            let firstName = '';
+            let lastName = '';
+            
+            for(let j = 0; j < fullName.length; j++){
+                if(j===0) firstName += fullName[j];
+                else lastName += fullName[j]
+            }
+            
+            let existingActor;
+
+            try{
+                existingActor = await this.getActorByFullName(firstName, lastName);
+
+            }catch(error){
+                throw new Error(error.message);
+            }
 
             if (existingActor !== null) {
                 try {
@@ -48,7 +60,6 @@ class ActorModel extends Model {
             return actor;
 
         } catch (error) {
-            console.error('Error inserting actor:', error.message);
             throw new Error(`Failed to insert actor: ${error.message}`);
         }
     }
@@ -62,7 +73,6 @@ class ActorModel extends Model {
             return result;
 
         } catch (error) {
-            console.error('Error inserting movie_actor:', error.message);
             throw new Error(`Failed to insert movie_actor: ${error.message}`);
         }
     }
@@ -76,7 +86,6 @@ class ActorModel extends Model {
             return actor || null;
 
         } catch (error) {
-            console.error('Error fetching actor:', error.message);
             throw new Error(`Failed to fetch actor: ${error.message}`);
         }
     }

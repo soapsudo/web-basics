@@ -15,9 +15,9 @@ class Image extends BaseController{
         try{
             const response = await fetch(imageUrl);
 
-            if(response.status !== 200) return res.status(500).json(response.statusText);
+            if(response.status !== 200) return res.status(500).json({message: response.statusText});
 
-            const imgBuffer = await response.buffer();
+            const imgBuffer = await response.arrayBuffer();
 
             res.setHeader('Content-Type', 'image/jpeg');
             res.setHeader('Access-Control-Allow-Origin', '*');

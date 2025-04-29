@@ -20,8 +20,7 @@ class DirectorModel extends Model{
                 return null;
             }
         } catch (error) {
-            console.error('getDirector error:', error);
-            return null;
+            throw new Error(`getDirector error: ${error.message}`);
         }
     }
     
@@ -37,8 +36,7 @@ class DirectorModel extends Model{
             return inserted;
 
         } catch (error) {
-            console.error(`insertDirector error:`, error);
-            return null;
+            throw new Error(`insertDirector error: ${error.message}`);
         }
     }
 }
