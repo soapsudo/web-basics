@@ -29,9 +29,14 @@ async function addToWatchlistListener(id){
 
             const data = await response.json();
 
-            if(response.status !== 201) new ErrorHandler(false, data, document);
-            else new ErrorHandler(true, `Successfully added the movie to the watchlist.`, document);
-            await changeAddToWatchlistButton();
+            if(response.status !== 201) {
+                new ErrorHandler(false, data, document);
+                return;
+
+            } else{
+                new ErrorHandler(true, `Successfully added the movie to the watchlist.`, document);
+                await changeAddToWatchlistButton();
+            } 
 
         }catch(error){
             new ErrorHandler(false, error.message, document);

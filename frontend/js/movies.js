@@ -31,17 +31,18 @@ function getAddMovieCard(){
 
 //TODO error handling!
 async function loadMovies() {
-    try {
-      const response = await fetch(getUrl());  
-      const data = await response.json();
+  try {
+    const response = await fetch(getUrl());
+    const data = await response.json();
 
+    if (response.status == 200) {
       const movies = document.getElementById(`movies`);
       const ul = document.createElement(`ul`);
       const addMovie = getAddMovieCard();
 
       ul.className = `movie-display`;
       ul.appendChild(addMovie);
-  
+
       data.forEach(movie => {
         const div = document.createElement(`div`)
         div.className = `movie-item`;
@@ -74,13 +75,19 @@ async function loadMovies() {
         li.appendChild(link);
         ul.appendChild(li);
       });
-  
+
       movies.appendChild(ul);
-      
-    } catch (error) {
-        new ErrorHandler(false, `Error fetching movies: ${error}`, document);
+
+    }else{
+      new ErrorHandler(false, `Error fetching movies: ${data}`)
     }
+
+
+
+  } catch (error) {
+    new ErrorHandler(false, `Error fetching movies: ${error}`, document);
   }
+}
 
 
   

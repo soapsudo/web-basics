@@ -85,8 +85,6 @@ async function removeRemovedActors(){
 
      const actorsToBeRemoved = removedActors;
 
-     console.log(actorsToBeRemoved);
-
      for(let i = 0; i < actorsToBeRemoved.length; i++){
           const fullName = actorsToBeRemoved[i].split(' ');
 
@@ -106,8 +104,9 @@ async function removeRemovedActors(){
                const response = await fetch(`http://localhost:3000/actor?first=${firstName}&last=${lastName}`);
 
                if(response.status !== 200){
-                    throw new Error(`${error}`);
-
+                    const data = await response.json();
+                    new ErrorHandler(false, data.message, document);
+                    return;
                }else{
                     const actor = await response.json();
                     const responseMovieActor = await fetch(`http://localhost:3000/movie-actor/${movieId}/${actor.actor_id}`, {
@@ -117,7 +116,8 @@ async function removeRemovedActors(){
                     const data = await responseMovieActor.json();
 
                     if(responseMovieActor.status !== 200){
-                         throw new Error(`${data}}`);
+                         new ErrorHandler(false, data.message, document);
+                         return;
                     }
                }
 
@@ -179,8 +179,9 @@ async function getRemoteImage(imageUrl){
 
      try{
           const response = await fetch(`http://localhost:3000/get-image?url=${imageUrl}`);
+          const data = await response.json();
 
-          if(!response.ok) throw new Error(`Error while fetching the existing image: ${await response.statusText}`);
+          if(!response.ok) new ErrorHandler(false, `Error while fetching the existing image: ${data}`, document);
 
           const blob = await response.blob();
 
@@ -246,88 +247,88 @@ async function addMovie() {
 
 }
 
-async function setFieldValues(){
+async function setFieldValues() {
 
-    if(movieId){
+     if (movieId) {
 
-        try{
-            const response = await fetch(`http://localhost:3000/movies/${movieId}`);
+          try {
+               const response = await fetch(`http://localhost:3000/movies/${movieId}`);
+               const data = await response.json();
 
-            if(response.status == 200){
-                const data = await response.json();
+               if (response.status == 200) {
+                    const title = document.getElementById(`movie_title`);
+                    title.value = data.movie_title;
 
-                const title = document.getElementById(`movie_title`);
-                title.value = data.movie_title;
+                    const image = document.getElementById(`image-label`);
+                    image.innerHTML += `<br> <a href='${data.image}'>Current image</a>`;
 
-                const image = document.getElementById(`image-label`);
-                image.innerHTML += `<br> <a href='${data.image}'>Current image</a>`;
+                    const file = document.getElementById(`image`);
 
-                const file = document.getElementById(`image`);
+                    try {
+                         const currentFile = await getRemoteImage(`${data.image}`);
 
-                try{
-                    const currentFile = await getRemoteImage(`${data.image}`);
+                         const dataTransfer = new DataTransfer();
+                         dataTransfer.items.add(currentFile);
+                         file.files = dataTransfer.files;
 
-                    const dataTransfer = new DataTransfer();
-                    dataTransfer.items.add(currentFile);
-                    file.files = dataTransfer.files;
-                    
-                }catch(error){
-                    new ErrorHandler(false, `Couldn't get the existing image for this movie: ${error}`, document);
-                }
-                
-
-                const category = document.getElementById(`${data.category_name}`);
-                category.selected = true;
-
-                const fullName = data.director_name.split(' ');
-                const directorFirstName = document.getElementById(`director_first_name`);
-                const directorLastName = document.getElementById(`director_last_name`);
-
-                for(let i = 0; i < fullName.length; i++){
-                    if(i == 0){
-                         directorFirstName.value = fullName[i];
-
-                    }else{
-                         directorLastName.value = fullName[i];
+                    } catch (error) {
+                         new ErrorHandler(false, `Couldn't get the existing image for this movie: ${error}`, document);
                     }
-                }
 
-                const description = document.getElementById(`description`);
-                description.value = data.description;
 
-                const score = document.getElementById(`${data.score}`);
-                score.selected = true;
+                    const category = document.getElementById(`${data.category_name}`);
+                    category.selected = true;
 
-                const actors = data.actors.split(`,`);
+                    const fullName = data.director_name.split(' ');
+                    const directorFirstName = document.getElementById(`director_first_name`);
+                    const directorLastName = document.getElementById(`director_last_name`);
 
-                for(let i = 0; i < actors.length; i++){
+                    for (let i = 0; i < fullName.length; i++) {
+                         if (i == 0) {
+                              directorFirstName.value = fullName[i];
 
-                    const fullName = actors[i].split(` `);
-                    
-                    let firstName = ` `;
-                    let lastName = ` `;
-
-                    for(let j = 0; j < fullName.length; j++){
-                         if(j == 0){
-                              firstName += fullName[j];
-                         }else{
-                              lastName += fullName[j];
+                         } else {
+                              directorLastName.value = fullName[i];
                          }
                     }
 
-                    addActor(firstName, lastName);
-                }
+                    const description = document.getElementById(`description`);
+                    description.value = data.description;
 
+                    const score = document.getElementById(`${data.score}`);
+                    score.selected = true;
 
-                const year = document.getElementById(`year`);
-                year.value = `${data.release_year}-01-01`
+                    const actors = data.actors.split(`,`);
 
-            }
+                    for (let i = 0; i < actors.length; i++) {
 
-        }catch(error){
-            new ErrorHandler(false, `Couldn't fetch the data for the movie with the ID: ${movieId}`, document);
-        }
-    }
+                         const fullName = actors[i].split(` `);
+
+                         let firstName = ` `;
+                         let lastName = ` `;
+
+                         for (let j = 0; j < fullName.length; j++) {
+                              if (j == 0) {
+                                   firstName += fullName[j];
+                              } else {
+                                   lastName += fullName[j];
+                              }
+                         }
+
+                         addActor(firstName, lastName);
+                    }
+
+                    const year = document.getElementById(`year`);
+                    year.value = `${data.release_year}-01-01`;
+
+               }else{
+                    new ErrorHandler(false, `Couldnt set the data for this movie: ${data}`, document);
+               }
+
+          } catch (error) {
+               new ErrorHandler(false, `Couldn't fetch the data for the movie with the ID: ${movieId}`, document);
+          }
+     }
 }
 
 addDeleteListener();

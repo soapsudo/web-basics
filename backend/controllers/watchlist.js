@@ -46,9 +46,6 @@ class Watchlist extends BaseController{
 
         const filter = req.query.filter;
 
-
-        console.log(filter);
-
         if(filter){
             if(filter === 'not-watched' || filter === 'watched');
             else return res.status(400).json({message: 'Invalid filter provided.'});

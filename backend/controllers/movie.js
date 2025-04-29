@@ -53,13 +53,20 @@ class Movie extends BaseController {
         const search = req.query.search;
         const sort = req.query.sort;
 
-        const data = await this.movieModel.getAllMovies(null, search, sort);
-
-        if (data.error) {
-            return res.status(500).json({message: data});
-        } else {
-            return res.status(200).json(data);
+        if(sort){
+            if(sort === 'a-z' || sort === 'z-a');
+            else return res.status(400).json({message: 'Invalid sorting provided.'});
         }
+
+        try{
+            const data = await this.movieModel.getAllMovies(null, search, sort);
+            return res.status(200).json(data);
+
+        }catch(error){
+            return res.status(500).json({message: `${error.message}`});
+        }
+
+        
     }
 
     getOne = async (req, res) => {
@@ -70,15 +77,13 @@ class Movie extends BaseController {
         const inRange = await this.movieModel.isIdInRange(parsedId);
         if (inRange === false) return res.status(400).json({message: 'Invalid ID provided'});
 
-        const movie = await this.movieModel.getOneMovie(parsedId);
-
-        if (movie.error) {
-            return res.status(500).json(movie);
-
-        } else {
+        try{
+            const movie = await this.movieModel.getOneMovie(parsedId);            
             return res.status(200).json(movie);
-        }
 
+        }catch(error){
+            return res.status(500).json({message: `${error.message}`});
+        }
 
     }
 
@@ -90,15 +95,13 @@ class Movie extends BaseController {
         const inRange = await this.movieModel.isIdInRange(parsedId);
         if (inRange === false) return res.status(400).json({message: 'Invalid ID provided'});
 
-        const movie = await this.movieModel.deleteMovie(parsedId);
-
-        if (movie) {
-            return res.status(500).json(error);
-
-        } else {
+        try{
+            const movie = await this.movieModel.deleteMovie(parsedId);
             return res.status(200).json(movie);
-        }
 
+        }catch(error){
+            return res.status(500).json({message: `${error.message}`});
+        }
     }
 
 }
