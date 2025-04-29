@@ -29,7 +29,6 @@ function getAddMovieCard(){
   return addMovieCard;
 }
 
-//TODO error handling!
 async function loadMovies() {
   try {
     const response = await fetch(getUrl());

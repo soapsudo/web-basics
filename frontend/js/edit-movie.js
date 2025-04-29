@@ -179,9 +179,8 @@ async function getRemoteImage(imageUrl){
 
      try{
           const response = await fetch(`http://localhost:3000/get-image?url=${imageUrl}`);
-          const data = await response.json();
 
-          if(!response.ok) new ErrorHandler(false, `Error while fetching the existing image: ${data}`, document);
+          if(!response.ok) throw new Error(`Server error while fetching the existing image.`);
 
           const blob = await response.blob();
 

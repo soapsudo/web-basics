@@ -6,10 +6,13 @@
 
 .movie-display {
     display: flex;
-    list-style-type: none;
     flex-wrap: wrap;
-    padding: 50px 120px 50px 120px;
-    margin: 0;
+    gap: 20px;
+    margin: 50px auto;
+    max-width: 1600px;
+    list-style: none;
+    padding: 0;
+    justify-content: center;
 }
 
 .movie-item {
