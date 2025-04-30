@@ -39,9 +39,9 @@ main{
 }
 
 .container-crud{
-    text-align: left;
+    justify-content: center;
     padding: 50px 120px;
-    display: block;
+    display: flex;
 }
 
 .button{
