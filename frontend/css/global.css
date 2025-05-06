@@ -52,6 +52,8 @@ main{
     border-style: none;
     font-size: 18px;
     color: #FFFF;
+    transition: ease-in-out;
+    transition-duration: 0.3s;  
 }
 
 .button:hover{
@@ -68,6 +70,8 @@ main{
     border-style: none;
     font-size: 18px;
     color: #FFFF;
+    transition: ease-in-out;
+    transition-duration: 0.3s;  
 }
 
 .button-red:hover{
@@ -86,6 +90,8 @@ main{
     border-color: #333;
     font-size: 18px;
     color: #333;
+    transition: ease-in-out;
+    transition-duration: 0.3s;  
 }
 
 .button-white:hover{
@@ -103,6 +109,8 @@ main{
     border-style: none;
     font-size: 18px;
     color: #FFFF;
+    transition: ease-in-out;
+    transition-duration: 0.3s;  
 }
 
 .button-green-disabled{

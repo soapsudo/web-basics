@@ -27,6 +27,8 @@
     height: 300px;
     object-fit: cover;
     display: block;
+    transition: ease-in-out;
+    transition-duration: 0.3s;
 }
 
 .movie-image:hover{
@@ -75,6 +77,8 @@
 
 .movie-image-add{
     height: auto;
+    transition: ease-in-out;
+    transition-duration: 0.3s;
 }
 
 .movie-image-add:hover{
