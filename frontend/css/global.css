@@ -14,6 +14,10 @@ body {
     margin-top: auto;
 }
 
+h1{
+    font-size: 35px;
+}
+
 main{
     flex: 1;
 }
@@ -21,6 +25,7 @@ main{
 .form-input{
     margin-bottom: 20px;
     background-color: white;
+    width: 90%;
 }
 
 
