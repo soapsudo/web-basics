@@ -1,5 +1,7 @@
 import BaseController from "./base-controller.js";
 import WatchlistModel from "../models/watchlist.js"
+import statusCodes from "../server/status-codes.js";
+
 
 class Watchlist extends BaseController{
 

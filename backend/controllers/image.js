@@ -1,5 +1,7 @@
 import BaseController from "./base-controller.js";
 import fetch from 'node-fetch';
+import statusCodes from "../server/status-codes.js";
+
 
 class Image extends BaseController{
     constructor(databaseUtils){

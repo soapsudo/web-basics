@@ -38,11 +38,20 @@ class Server {
 
   startServer() {
     app.use(cors(this.corsOptions));
-    //Ik moet in de API json responses teruggeven
     app.use('/uploads', express.static(uploadDir));
     app.use(express.json());
 
     this.loadRouter();
+
+    //Globale error handler
+    app.use(function (err, req, res, next){
+        res
+        .status(err.status || 500)
+        .json({
+           message: err.message || 'Something went wrong!'
+        });
+
+    });
 
     app.listen(port, () => {
       console.log(`Backend listening at http://localhost:${port}`);

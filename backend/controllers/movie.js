@@ -1,5 +1,7 @@
 import MovieModel from "../models/movie.js";
 import BaseController from "./base-controller.js";
+import statusCodes from "../server/status-codes.js";
+
 
 class Movie extends BaseController {
 

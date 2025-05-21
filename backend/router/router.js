@@ -21,8 +21,6 @@ class Router{
         this.actorRouter.loadActorRoutes();
         this.watchlistRouter.loadWatchlistRoutes();
     }
-
-
 }
 
 export default Router;

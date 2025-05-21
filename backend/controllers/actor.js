@@ -1,5 +1,6 @@
 import BaseController from "./base-controller.js";
 import ActorModel from "../models/actor.js";
+import statusCodes from "../server/status-codes.js";
 
 class Actor extends BaseController{
 
@@ -13,7 +14,9 @@ class Actor extends BaseController{
         const firstName = req.query.first;
         const lastName = req.query.last;
 
-        if(!firstName || !lastName) return res.status(400).json({message: `Invalid request, no actor data provided.`});
+        if(!firstName || !lastName){
+            return res.status(400).json({message: `Invalid request, no actor data provided.`});
+        }
 
         try{
             const actor = await this.actorModel.getActorByFullName(firstName, lastName);
