@@ -13,6 +13,7 @@ class MovieRouter {
         this.app.get('/movies/:id', this.movie.getOne);
         this.app.delete('/movies/:id', this.movie.deleteMovie);
         this.app.post('/movie', upload.single('image'), this.movie.addMovie);
+        this.app.put('/movie/:id', upload.single('image'), this.movie.updateMovie);
     }
 
 }
