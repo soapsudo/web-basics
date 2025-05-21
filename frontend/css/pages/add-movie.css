@@ -1,7 +1,7 @@
 .remove-actor{
     border-style: none;
-    border-radius: 5px;
-    font-size: 15px;
+    border-radius: 0.313rem;
+    font-size: 0.938rem;
     color: white;
     background-color: #cc0000;
 }
@@ -13,10 +13,10 @@
  }
 
  .added-actor-list{
-    margin-bottom: 25px;
+    margin-bottom: 1.563rem;
  }
 
  .added-actor{
-    padding: 5px;
-    font-size: 18px;
+    padding: 0.313rem;
+    font-size: 1.125rem;
  }
