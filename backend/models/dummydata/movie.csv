@@ -1,51 +1,51 @@
 movie_id---category_id---director_id---movie_title---image---description---release_year---score
-1---3---1---Inception---https://image.tmdb.org/t/p/original/ljsZTbVsrQSqZgWeep2B1QiDKuh.jpg---A thief with the ability to enter dreams must pull off the ultimate heist.---2010---8
-2---2---2---Pulp Fiction---https://image.tmdb.org/t/p/original/vQWk5YBFWF4bZaofAbv0tShwBvQ.jpg---Interwoven stories of crime and redemption in Los Angeles.---1994---9
-3---3---3---Jurassic Park---https://image.tmdb.org/t/p/original/fjTU1Bgh3KJu4aatZil3sofR2zC.jpg---A theme park with living dinosaurs goes horribly wrong.---1993---8
-4---4---4---Little Women---https://image.tmdb.org/t/p/original/yn5ihODtZ7ofn8pDYfxCmxh8AXI.jpg---Four sisters come of age in post-Civil War America.---2019---7
-5---3---5---Dune---https://image.tmdb.org/t/p/original/d5NXSklXo0qyIYkgV94XAgMIckC.jpg---A young noble navigates a desert planet's political and ecological challenges.---2021---8
-6---2---6---The Wolf of Wall Street---https://image.tmdb.org/t/p/original/kW9LmvYHAaS9iA0tHmZVq8hQYoq.jpg---A stockbroker's rise and fall through greed and excess.---2013---8
-7---5---7---Fight Club---https://image.tmdb.org/t/p/original/pB8BM7pdSp6B6Ih7QZ4DrQ3PmJK.jpg---An insomniac forms an underground fight club with a charismatic stranger.---1999---9
-8---3---8---Gravity---https://image.tmdb.org/t/p/original/kZ2nZw8D681aphje8NJi8EfbL1U.jpg---Two astronauts fight for survival after a space shuttle disaster.---2013---7
-9---2---9---Parasite---https://image.tmdb.org/t/p/original/7IiTTgloJzvGI1TAYymCfbfl3vT.jpg---A poor family schemes to infiltrate a wealthy household.---2019---9
-10---1---10---Wonder Woman---https://image.tmdb.org/t/p/original/v4ncgZjG2Zu8ZW5al1vIZTsSjqX.jpg---An Amazonian warrior fights to save the world during WWI.---2017---7
-11---3---11---Avatar---https://image.tmdb.org/t/p/original/kyeqWdyUXW608qlYkRqosgbbJyK.jpg---A marine explores an alien planet and joins its indigenous fight.---2009---8
-12---2---12---Brokeback Mountain---https://image.tmdb.org/t/p/original/aByfQOQBNa4CMFwIgq3QrqY2ZHh.jpg---Two cowboys form a forbidden romance in 1960s Wyoming.---2005---7
-13---2---13---Lost in Translation---https://image.tmdb.org/t/p/original/4k4Yz08WGfbu8ITIjaG99XTeco8.jpg---A lonely actor and a young woman connect in Tokyo.---2003---7
-14---3---14---Blade Runner---https://image.tmdb.org/t/p/original/63N9uy8nd9j7Eog2axPQ8lbr3Wj.jpg---A bounty hunter tracks rogue androids in a dystopian future.---1982---8
-15---7---15---Pan's Labyrinth---https://image.tmdb.org/t/p/original/s8C4whhKtDaJvMDcyiMvx3BIF5F.jpg---A girl escapes war-torn Spain through a magical labyrinth.---2006---8
-16---2---16---Selma---https://image.tmdb.org/t/p/original/wq4lhMc4BuOyQqe1ZGzhxLyy3Uk.jpg---Martin Luther King Jr. leads the civil rights march to Selma.---2014---7
-17---2---17---Do the Right Thing---https://image.tmdb.org/t/p/original/63rmSDPahrH7C1gEFYzRuIBAN9W.jpg---Tensions rise on a hot summer day in Brooklyn.---1989---8
-18---4---18---Jojo Rabbit---https://image.tmdb.org/t/p/original/7GsM4mtM0worCtIVeiQt28HieeN.jpg---A boy’s imaginary Hitler navigates Nazi Germany.---2019---8
-19---2---19---Nomadland---https://image.tmdb.org/t/p/original/k5XzjWihzum1YgLMlqRDRZDmVMn.jpg---A woman lives as a modern nomad after economic collapse.---2020---7
-20---1---20---Black Panther---https://image.tmdb.org/t/p/original/uxzzxijgPIY7slzFvMotPv8wjKA.jpg---A king defends his hidden African nation from threats.---2018---8
-21---4---21---The Grand Budapest Hotel---https://image.tmdb.org/t/p/original/eWdyYQreja6JGCzqHWXpWHDrrPo.jpg---A concierge navigates chaos in a quirky European hotel.---2014---8
-22---8---22---Get Out---https://image.tmdb.org/t/p/original/tFXcEccSQMf3lfhfXKSU9iRBpa3.jpg---A man uncovers sinister secrets at his girlfriend’s family estate.---2017---8
-23---2---23---Moonlight---https://image.tmdb.org/t/p/original/rcICfiL9fvwRjoWHxW8QeroLYrJ.jpg---A young man navigates identity and love in Miami.---2016---8
-24---5---24---We Need to Talk About Kevin---https://image.tmdb.org/t/p/original/auAmiRmbBQ5QIYGpWgcGBoBQY3b.jpg---A mother grapples with her disturbed son’s actions.---2011---7
-25---7---25---The Lord of the Rings: The Fellowship of the Ring---https://image.tmdb.org/t/p/original/6oom5QYQ2yQTMJIbnvbkBL9cHo6.jpg---A hobbit embarks on a quest to destroy a powerful ring.---2001---9
-26---1---11---Terminator 2: Judgment Day---https://image.tmdb.org/t/p/original/5M0j0B18abtBI5gi2RhfjjurTqb.jpg---A cyborg protects a boy from a deadly assassin.---1991---8
-27---2---6---Taxi Driver---https://image.tmdb.org/t/p/original/ekstpH614fwDX8DUln1a2Opz0N8.jpg---A disturbed veteran becomes a vigilante in New York.---1976---8
-28---5---7---Gone Girl---https://image.tmdb.org/t/p/original/ts996lKsxvjkO2yiYG0ht4qAicO.jpg---A woman’s disappearance reveals dark secrets in her marriage.---2014---8
-29---6---12---Life of Pi---https://image.tmdb.org/t/p/original/iLgRu4hhSr6V1uManX6ukDriiSc.jpg---A boy survives a shipwreck with a tiger on a lifeboat.---2012---7
-30---2---13---Marie Antoinette---https://image.tmdb.org/t/p/original/cybXGmv8Rjd5Os8Xml6YxMBQ0Zt.jpg---The young queen navigates life at Versailles.---2006---6
-31---3---14---Gladiator---https://image.tmdb.org/t/p/original/ty8TGRuvJLPUmAR1H1nRIsgwvim.jpg---A betrayed general seeks revenge in ancient Rome.---2000---8
-32---7---15---The Shape of Water---https://image.tmdb.org/t/p/original/9zfwPffUXpBrEP26yp0q1ckXDcj.jpg---A mute woman falls for a mysterious aquatic creature.---2017---7
-33---2---16---13th---https://image.tmdb.org/t/p/original/tcKNWD6IFPPsvkpvyZ548naz0is.jpg---A documentary on mass incarceration in the U.S.---2016---8
-34---4---18---Thor: Ragnarok---https://image.tmdb.org/t/p/original/rzRwTcFvttcN1ZpX2xv4j3tSdJu.jpg---Thor teams up to save Asgard from destruction.---2017---7
-35---2---19---The Rider---https://image.tmdb.org/t/p/original/cFsrA0Is5xode2INrPj1VJcQ18n.jpg---A young cowboy faces life after a rodeo injury.---2017---7
-36---1---20---Creed---https://image.tmdb.org/t/p/original/1BfTsk5VWuw8FCocAhCyqnRbEzq.jpg---A young boxer trains under a legendary mentor.---2015---7
-37---4---21---Moonrise Kingdom---https://image.tmdb.org/t/p/original/y4SXcbNl6CEF2t36icuzuBioj7K.jpg---Two young lovers run away on a whimsical island.---2012---7
-38---8---22---Us---https://image.tmdb.org/t/p/original/ux2dU1jQ2ACIMShzB3yP93Udpzc.jpg---A family faces their doppelgängers in a chilling vacation.---2019---7
-39---2---23---If Beale Street Could Talk---https://image.tmdb.org/t/p/original/76NfwnaZI43gOQove0LU9O23Qjz.jpg---A woman fights to free her wrongly imprisoned lover.---2018---7
-40---5---24---You Were Never Really Here---https://image.tmdb.org/t/p/original/nx4lUyQNEzJowcF55VAP0TQEaX0.jpg---A traumatized veteran rescues a girl from trafficking.---2017---7
-41---7---25---The Hobbit: An Unexpected Journey---https://image.tmdb.org/t/p/original/yHA9Fc37VmpUA5UncTxxo3rTGVA.jpg---A hobbit joins a quest to reclaim a dragon’s treasure.---2012---7
-42---1---1---The Dark Knight---https://image.tmdb.org/t/p/original/qJ2tW6WMUDux911r6m7haRef0WH.jpg---Batman faces a chaotic criminal mastermind in Gotham.---2008---9
-43---5---7---Se7en---https://image.tmdb.org/t/p/original/191nKfP0ehp3uIvWqgPbFmI4lv9.jpg---Two detectives hunt a serial killer with a twisted moral code.---1995---8
-44---3---5---Arrival---https://image.tmdb.org/t/p/original/x2FJsf1ElAgr63Y3PNPtJrcmpoe.jpg---A linguist decodes an alien language to prevent global conflict.---2016---8
-45---2---9---Memories of Murder---https://image.tmdb.org/t/p/original/jcgUjx1QcupGzjntTVlnQ15lHqy.jpg---Detectives investigate a series of unsolved murders in Korea.---2003---8
-46---1---10---Monster---https://image.tmdb.org/t/p/original/aevmNtJCNG4ZlfEeEGZ79frMUes.jpg---A woman’s tragic life leads to a killing spree.---2003---7
-47---3---11---Titanic---https://image.tmdb.org/t/p/original/9xjZS2rlVxm8SFx8kPC3aIGCOYQ.jpg---A romance unfolds aboard a doomed ocean liner.---1997---7
-48---6---4---La La Land---https://image.tmdb.org/t/p/original/uDO8zWDhfWwoFdKS4fzkUJt0Rf0.jpg---A musician and actress chase dreams and love in Los Angeles.---2016---8
-49---2---17---BlacKkKlansman---https://image.tmdb.org/t/p/original/8jxqAvSDoneSKRczaK8v9X5gqBp.jpg---A Black cop infiltrates the KKK in the 1970s.---2018---7
-50---4---21---Fantastic Mr. Fox---https://image.tmdb.org/t/p/original/njbTizADSZg4PqeyJdDzZGooikv.jpg---A clever fox outwits farmers in a whimsical heist.---2009---7
+1---3---1---Inception---http://localhost:3000/uploads/inception.jpg---A thief with the ability to enter dreams must pull off the ultimate heist.---2010---8
+2---2---2---Pulp Fiction---http://localhost:3000/uploads/pulpfiction.jpg---Interwoven stories of crime and redemption in Los Angeles.---1994---9
+3---3---3---Jurassic Park---http://localhost:3000/uploads/jurrassic.jpg---A theme park with living dinosaurs goes horribly wrong.---1993---8
+4---4---4---Little Women---http://localhost:3000/uploads/littlewomen.jpg---Four sisters come of age in post-Civil War America.---2019---7
+5---3---5---Dune---http://localhost:3000/uploads/dune.jpg---A young noble navigates a desert planet's political and ecological challenges.---2021---8
+6---2---6---The Wolf of Wall Street---http://localhost:3000/uploads/wolfofwallstreet.jpg---A stockbroker's rise and fall through greed and excess.---2013---8
+7---5---7---Fight Club---http://localhost:3000/uploads/fightclub.jpg---An insomniac forms an underground fight club with a charismatic stranger.---1999---9
+8---3---8---Gravity---http://localhost:3000/uploads/gravity.jpg---Two astronauts fight for survival after a space shuttle disaster.---2013---7
+9---2---9---Parasite---http://localhost:3000/uploads/parasite.jpg---A poor family schemes to infiltrate a wealthy household.---2019---9
+10---1---10---Wonder Woman---http://localhost:3000/uploads/wonderwoman.jpg---An Amazonian warrior fights to save the world during WWI.---2017---7
+11---3---11---Avatar---http://localhost:3000/uploads/avatar.jpg---A marine explores an alien planet and joins its indigenous fight.---2009---8
+12---2---12---Brokeback Mountain---http://localhost:3000/uploads/brokebackmountain.jpg---Two cowboys form a forbidden romance in 1960s Wyoming.---2005---7
+13---2---13---Lost in Translation---http://localhost:3000/uploads/lostintranslation.jpg---A lonely actor and a young woman connect in Tokyo.---2003---7
+14---3---14---Blade Runner---http://localhost:3000/uploads/bladerunner.jpg---A bounty hunter tracks rogue androids in a dystopian future.---1982---8
+15---7---15---Pan's Labyrinth---http://localhost:3000/uploads/pan.jpg---A girl escapes war-torn Spain through a magical labyrinth.---2006---8
+16---2---16---Selma---http://localhost:3000/uploads/selma.jpg---Martin Luther King Jr. leads the civil rights march to Selma.---2014---7
+17---2---17---Do the Right Thing---http://localhost:3000/uploads/rightthing.jpg---Tensions rise on a hot summer day in Brooklyn.---1989---8
+18---4---18---Jojo Rabbit---http://localhost:3000/uploads/jojo.jpg---A boy’s imaginary Hitler navigates Nazi Germany.---2019---8
+19---2---19---Nomadland---http://localhost:3000/uploads/nomadland.jpg---A woman lives as a modern nomad after economic collapse.---2020---7
+20---1---20---Black Panther---http://localhost:3000/uploads/panther.jpg---A king defends his hidden African nation from threats.---2018---8
+21---4---21---The Grand Budapest Hotel---http://localhost:3000/uploads/budapest.jpg---A concierge navigates chaos in a quirky European hotel.---2014---8
+22---8---22---Get Out---http://localhost:3000/uploads/getout.jpg---A man uncovers sinister secrets at his girlfriend’s family estate.---2017---8
+23---2---23---Moonlight---http://localhost:3000/uploads/moonlight.jpg---A young man navigates identity and love in Miami.---2016---8
+24---5---24---We Need to Talk About Kevin---http://localhost:3000/uploads/kevin.jpg---A mother grapples with her disturbed son’s actions.---2011---7
+25---7---25---The Lord of the Rings: The Fellowship of the Ring---http://localhost:3000/uploads/lotr1.jpg---A hobbit embarks on a quest to destroy a powerful ring.---2001---9
+26---1---11---Terminator 2: Judgment Day---http://localhost:3000/uploads/terminator2.jpg---A cyborg protects a boy from a deadly assassin.---1991---8
+27---2---6---Taxi Driver---http://localhost:3000/uploads/taxi.jpg---A disturbed veteran becomes a vigilante in New York.---1976---8
+28---5---7---Gone Girl---http://localhost:3000/uploads/gonegirl.jpg---A woman’s disappearance reveals dark secrets in her marriage.---2014---8
+29---6---12---Life of Pi---http://localhost:3000/uploads/pi.jpg---A boy survives a shipwreck with a tiger on a lifeboat.---2012---7
+30---2---13---Marie Antoinette---http://localhost:3000/uploads/marie.jpg---The young queen navigates life at Versailles.---2006---6
+31---3---14---Gladiator---http://localhost:3000/uploads/gladiator.jpg---A betrayed general seeks revenge in ancient Rome.---2000---8
+32---7---15---The Shape of Water---http://localhost:3000/uploads/water.jpg---A mute woman falls for a mysterious aquatic creature.---2017---7
+33---2---16---13th---http://localhost:3000/uploads/13.jpg---A documentary on mass incarceration in the U.S.---2016---8
+34---4---18---Thor: Ragnarok---http://localhost:3000/uploads/thorragnarok.jpg---Thor teams up to save Asgard from destruction.---2017---7
+35---2---19---The Rider---http://localhost:3000/uploads/rider.jpg---A young cowboy faces life after a rodeo injury.---2017---7
+36---1---20---Creed---http://localhost:3000/uploads/creed.jpg---A young boxer trains under a legendary mentor.---2015---7
+37---4---21---Moonrise Kingdom---http://localhost:3000/uploads/moonrise.jpg---Two young lovers run away on a whimsical island.---2012---7
+38---8---22---Us---http://localhost:3000/uploads/us.jpg---A family faces their doppelgängers in a chilling vacation.---2019---7
+39---2---23---If Beale Street Could Talk---http://localhost:3000/uploads/bealestreet.jpg---A woman fights to free her wrongly imprisoned lover.---2018---7
+40---5---24---You Were Never Really Here---http://localhost:3000/uploads/youneverreallywerehere.jpg---A traumatized veteran rescues a girl from trafficking.---2017---7
+41---7---25---The Hobbit: An Unexpected Journey---http://localhost:3000/uploads/hobbit1.jpg---A hobbit joins a quest to reclaim a dragon’s treasure.---2012---7
+42---1---1---The Dark Knight---http://localhost:3000/uploads/batman.jpg---Batman faces a chaotic criminal mastermind in Gotham.---2008---9
+43---5---7---Se7en---http://localhost:3000/uploads/seven.jpg---Two detectives hunt a serial killer with a twisted moral code.---1995---8
+44---3---5---Arrival---http://localhost:3000/uploads/arrival.jpg---A linguist decodes an alien language to prevent global conflict.---2016---8
+45---2---9---Memories of Murder---http://localhost:3000/uploads/memoriesofmurder.jpg---Detectives investigate a series of unsolved murders in Korea.---2003---8
+46---1---10---Monster---http://localhost:3000/uploads/monster.jpg---A woman’s tragic life leads to a killing spree.---2003---7
+47---3---11---Titanic---http://localhost:3000/uploads/titanic.jpg---A romance unfolds aboard a doomed ocean liner.---1997---7
+48---6---4---La La Land---http://localhost:3000/uploads/lalaland.jpg---A musician and actress chase dreams and love in Los Angeles.---2016---8
+49---2---17---BlacKkKlansman---http://localhost:3000/uploads/kkk.jpg---A Black cop infiltrates the KKK in the 1970s.---2018---7
+50---4---21---Fantastic Mr. Fox---http://localhost:3000/uploads/mrfox.jpg---A clever fox outwits farmers in a whimsical heist.---2009---7
