@@ -15,7 +15,10 @@ class Actor extends BaseController{
         const lastName = req.query.last;
 
         if(!firstName || !lastName){
-            return res.status(400).json({message: `Invalid request, no actor data provided.`});
+            throw {
+                status: statusCodes.BAD_REQUEST,
+                message: `Invalid request, no actor data provided.`
+            }
         }
 
         try{
@@ -23,7 +26,10 @@ class Actor extends BaseController{
             return res.status(200).json(actor);
 
         }catch(error){
-            return res.status(500).json({message: `Couldn't get the actor: ${error}`});
+            throw{
+                status: statusCodes.SERVER_ERROR,
+                message: `Couldn't get the requested actor: ${error}`
+            }
         }
 
     }

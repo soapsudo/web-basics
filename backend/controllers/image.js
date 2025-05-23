@@ -17,7 +17,13 @@ class Image extends BaseController{
         try{
             const response = await fetch(imageUrl);
 
-            if(response.status !== 200) return res.status(500).json({message: response.statusText});
+            if(response.status !== 200){
+                
+                throw{
+                    status: statusCodes.SERVER_ERROR,
+                    message: response.statusText
+                }
+            }
 
             const imgBuffer = await response.arrayBuffer();
 
@@ -27,7 +33,10 @@ class Image extends BaseController{
 
 
         }catch(error){
-            return res.status(500).json({message: error.message});
+            throw{
+                status: statusCodes.SERVER_ERROR,
+                message: error
+            }
         }
     }
 }
