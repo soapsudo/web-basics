@@ -14,13 +14,19 @@ class Movie extends BaseController {
     updateMovie = async (req, res) => {
 
         if (!req.file) {
-            return res.status(400).json({ message: 'No image uploaded' });
+            throw{
+                status: statusCodes.BAD_REQUEST,
+                message: `No image uploaded`
+            }
         }
 
         const { movie_title, category, director_first_name, director_last_name, description, score, year, actors } = req.body;
 
         if (!movie_title || !category || !director_first_name || !director_last_name || !description || !score || !year || !actors) {
-            return res.status(400).json({ message: 'All fields are required' });
+            throw{
+                status: statusCodes.BAD_REQUEST,
+                message: `All fields are required!`
+            }
         }
 
         try {
@@ -42,26 +48,37 @@ class Movie extends BaseController {
             if (movieInsertData.movie_id) {
                 return res.status(201).json(movieInsertData);
             } else {
-                return res.status(500).json({ message: 'Failed to update movie: No movie ID returned' });
+                throw{
+                    status: statusCodes.SERVER_ERROR,
+                    message: `Failed to update movie: no movie ID returned`
+                }
             }
         } catch (error) {
             console.error('Error updating movie:', error.message);
-            return res.status(500).json({ message: `Failed to update movie: ${error.message}` });
+            throw{
+                status: statusCodes.SERVER_ERROR,
+                message: `Failed to update movie: ${error.message}`
+            }
         }
-
     }
 
 
     addMovie = async (req, res) => {
 
         if (!req.file) {
-            return res.status(400).json({ message: 'No image uploaded' });
+            throw{
+                status: statusCodes.BAD_REQUEST,
+                message: `No image uploaded`
+            }        
         }
 
         const { movie_title, category, director_first_name, director_last_name, description, score, year, actors } = req.body;
 
         if (!movie_title || !category || !director_first_name || !director_last_name || !description || !score || !year || !actors) {
-            return res.status(400).json({ message: 'All fields are required' });
+            throw{
+                status: statusCodes.BAD_REQUEST,
+                message: `All fields are required!`
+            }
         }
 
         try {
@@ -83,11 +100,17 @@ class Movie extends BaseController {
             if (movieInsertData.movie_id) {
                 return res.status(201).json(movieInsertData);
             } else {
-                return res.status(500).json({ message: 'Failed to create movie: No movie ID returned' });
+                throw{
+                    status: statusCodes.SERVER_ERROR,
+                    message: `Failed to create movie: no movie ID returned`
+                }
             }
         } catch (error) {
             console.error('Error creating movie:', error.message);
-            return res.status(500).json({ message: `Failed to create movie: ${error.message}` });
+            throw{
+                status: statusCodes.SERVER_ERROR,
+                message: `Failed to create movie: ${error.message}`
+            }
         }
 
     }
@@ -99,7 +122,12 @@ class Movie extends BaseController {
 
         if(sort){
             if(sort === 'a-z' || sort === 'z-a');
-            else return res.status(400).json({message: 'Invalid sorting provided.'});
+            else {
+                throw{
+                    status: statusCodes.BAD_REQUEST,
+                    message: `Invalid sorting provided.`
+                }
+            }
         }
 
         try{
@@ -107,26 +135,40 @@ class Movie extends BaseController {
             return res.status(200).json(data);
 
         }catch(error){
-            return res.status(500).json({message: `${error.message}`});
+            throw{
+                status: statusCodes.SERVER_ERROR,
+                message: `${error.message}`
+            }
         }
-
-        
     }
 
     getOne = async (req, res) => {
 
         const parsedId = parseInt(req.params.id);
-        if (isNaN(parsedId)) return res.status(400).json({message: 'Invalid ID provided'});
+        if (isNaN(parsedId)){
+            throw{
+                status: statusCodes.BAD_REQUEST,
+                message: `Invalid ID provided.`
+            }
+        }
 
         const inRange = await this.movieModel.isIdInRange(parsedId);
-        if (inRange === false) return res.status(400).json({message: 'Invalid ID provided'});
+        if (inRange === false){
+            throw{
+                status: statusCodes.BAD_REQUEST,
+                message: `Invalid ID provided.`
+            }
+        } 
 
         try{
             const movie = await this.movieModel.getOneMovie(parsedId);            
             return res.status(200).json(movie);
 
         }catch(error){
-            return res.status(500).json({message: `${error.message}`});
+            throw{
+                status: statusCodes.SERVER_ERROR,
+                message: `${error.message}`
+            }
         }
 
     }
@@ -134,20 +176,32 @@ class Movie extends BaseController {
     deleteMovie = async (req, res) => {
 
         const parsedId = parseInt(req.params.id);
-        if (isNaN(parsedId)) return res.status(400).json({message: 'Invalid ID provided'});
+        if (isNaN(parsedId)){
+            throw{
+                status: statusCodes.BAD_REQUEST,
+                message: `Invalid ID provided.`
+            }
+        }
 
         const inRange = await this.movieModel.isIdInRange(parsedId);
-        if (inRange === false) return res.status(400).json({message: 'Invalid ID provided'});
+        if (inRange === false){
+            throw{
+                status: statusCodes.BAD_REQUEST,
+                message: `Invalid ID provided.`
+            }
+        } 
 
         try{
             const movie = await this.movieModel.deleteMovie(parsedId);
             return res.status(200).json(movie);
 
         }catch(error){
-            return res.status(500).json({message: `${error.message}`});
+            throw{
+                status: statusCodes.SERVER_ERROR,
+                message: `${error.message}`
+            }
         }
     }
-
 }
 
 export default Movie;

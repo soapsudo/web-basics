@@ -14,15 +14,29 @@ class Watchlist extends BaseController{
 
         const id = req.params.movieid;
 
-        if(!id || isNaN(id)) return res.status(400).json({message: 'No movie ID provided!'});
-        if(id < 1) return res.status(400).json({message: 'Invalid movie ID provided!'});
+        if(!id || isNaN(id)){
+            throw{
+                status: statusCodes.BAD_REQUEST,
+                message: `Invalid ID provided.`
+            }
+        } 
+        
+        if(id < 1){
+            throw{
+                status: statusCodes.BAD_REQUEST,
+                message: `Invalid ID provided.`
+            }
+        }
 
         try{
             await this.watchlistModel.markMovieAsWatched(id);
             return res.status(201).json({message: `Movie with the movie ID: ${id} marked as watched.`});
 
         }catch(error){
-            return res.status(500).json({message: `${error.message}`});
+            throw{
+                status: statusCodes.SERVER_ERROR,
+                message: `${error.message}`
+            }
         }
     }
 
@@ -31,17 +45,30 @@ class Watchlist extends BaseController{
 
         const id = req.params.movieid;
 
-        if(!id || isNaN(id)) return res.status(400).json({message: 'No movie ID provided!'});
-        if(id < 1) return res.status(400).json({message: 'Invalid movie ID provided!'});
+        if(!id || isNaN(id)){
+            throw{
+                status: statusCodes.BAD_REQUEST,
+                message: `Invalid ID provided.`
+            }
+        } 
+
+        if(id < 1){
+            throw{
+                status: statusCodes.BAD_REQUEST,
+                message: `Invalid ID provided.`
+            }
+        } 
 
         try{
             await this.watchlistModel.putMovieInWatchlist(id);
             return res.status(201).json({message: `Movie with the movie ID: ${id} inserted into the watchlist.`});
 
         }catch(error){
-            return res.status(500).json({message: `${error.message}`});
+            throw{
+                status: statusCodes.SERVER_ERROR,
+                message: `${error.message}`
+            }
         }
-
     }
 
     getAllFromWatchlist = async (req, res) => {
@@ -50,7 +77,12 @@ class Watchlist extends BaseController{
 
         if(filter){
             if(filter === 'not-watched' || filter === 'watched');
-            else return res.status(400).json({message: 'Invalid filter provided.'});
+            else{
+                throw{
+                    status: statusCodes.BAD_REQUEST,
+                    message: 'Invalid filter provided.'
+                }
+            } 
         }
 
         try{
@@ -58,17 +90,30 @@ class Watchlist extends BaseController{
             return res.status(200).json(watchlistMovies);
 
         }catch(error){
-            return res.status(500).json({message: `${error.message}`});
+            throw{
+                status: statusCodes.SERVER_ERROR,
+                message: `${error.message}`
+            }
         }
-
     }
 
     getFromWatchlist = async (req, res) => {
 
         const id = req.params.movieid;
 
-        if(!id || isNaN(id)) return res.status(400).json({message: 'No movie ID provided!'});
-        if(id < 1) return res.status(400).json({message: 'Invalid movie ID provided!'});
+        if(!id || isNaN(id)){
+            throw{
+                status: statusCodes.BAD_REQUEST,
+                message: `No movie ID provided.`
+            }
+        } 
+
+        if(id < 1){
+            throw{
+                status: statusCodes.BAD_REQUEST,
+                message: `Invalid ID provided.`
+            }
+        }
 
         try{
             const movie = await this.watchlistModel.getMovieFromWatchlist(id);
@@ -77,7 +122,10 @@ class Watchlist extends BaseController{
             else return res.status(404).json({message: `No movie with the movie ID: ${id} found on the watchlist.`});
 
         }catch(error){
-            return res.status(500).json({message: `${error.message}`});
+            throw{
+                status: statusCodes.SERVER_ERROR,
+                message: `${error.message}`
+            }
         }
     }
 
@@ -85,20 +133,31 @@ class Watchlist extends BaseController{
 
         const id = req.params.movieid;
 
-        if(!id || isNaN(id)) return res.status(400).json({message: 'No movie ID provided!'});
-        if(id < 1) return res.status(400).json({message: 'Invalid movie ID provided!'});
+        if(!id || isNaN(id)){
+            throw{
+                status: statusCodes.BAD_REQUEST,
+                message: `No movie ID provided.`
+            }
+        }
+
+        if(id < 1){
+            throw{
+                status: statusCodes.BAD_REQUEST,
+                message: `Invalid ID provided.`
+            }
+        }
 
         try{
             await this.watchlistModel.removeMovieFromWatchlist(id);
             return res.status(200).json({message: `Movie with the movie ID: ${id} deleted from the watchlist.`});
 
         }catch(error){
-            return res.status(500).json({message: `${error.message}`});
+            throw{
+                status: statusCodes.SERVER_ERROR,
+                message: `${error.message}`
+            }
         }
-        
-
     }
-
 }
 
 export default Watchlist;
