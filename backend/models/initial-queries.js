@@ -8,6 +8,9 @@ const csvDir = __dirname + '/dummydata/';
 const fileNames = [csvDir + 'actor.csv', csvDir + 'category.csv', csvDir + 'director.csv', csvDir + 'movie_actor.csv', csvDir + 'movie.csv', csvDir + 'watched.csv'];
 const tableNames = ['actor', 'category', 'director', 'movie_actor', 'movie', 'watchlist'];
 
+
+// This query is used to create the tables in the database if they do not exist.
+// It is executed when the application starts for the first time.
 export const initialQuery = `
  
 CREATE TABLE IF NOT EXISTS director(
@@ -55,7 +58,12 @@ CREATE TABLE IF NOT EXISTS watchlist(
     FOREIGN KEY (movie_id) REFERENCES movie(movie_id) ON UPDATE CASCADE ON DELETE CASCADE
 );
 `;
-
+/**
+* Inserts dummy data into the database tables.
+* 
+* @param {*} db - Database utility used for executing the insert queries.
+* @returns Void OR logs error if it should happen.
+*/
 export async function insertDummyData(db) {
     for (let i = 0; i < fileNames.length; i++) {
 
@@ -85,6 +93,15 @@ export async function insertDummyData(db) {
     }
 }
 
+
+/**
+* Makes a string query to insert data into the database.
+* 
+* @param {*} tableName - Table where the data needs to be inserted.
+* @param {*} parsedFile - Parsed file data from the CSV.
+* @param {*} cols - Columns that need to be inserted into the table.
+* @returns Insertion query string.
+*/
 function buildQuery(tableName, parsedFile, cols) {
 
     let query = `INSERT OR REPLACE INTO `  + tableName + ` (` + cols.join(', ')  + `) VALUES (`;
@@ -107,6 +124,12 @@ function buildQuery(tableName, parsedFile, cols) {
 
 }
 
+/**
+* Parses a CSV file and converts it into an array of objects.
+* 
+* @param {*} fileName - Name of the file that needs to be parsed.
+* @returns Object with the parsed data.
+*/
 async function parseCSV(fileName) {
 
     //Terminal houdt niet van \r, dus hierin moest ik bij de lines dit vervangen

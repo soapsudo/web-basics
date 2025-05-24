@@ -7,7 +7,9 @@ class ActorRouter{
         this.databaseUtils = databaseUtils;    
         this.actor = new Actor(this.databaseUtils);
     }
-
+    /**
+     * Loads all the routes for the actor entity.
+     */
     loadActorRoutes(){
         this.app.get('/actor', this.actor.getActor);
     }

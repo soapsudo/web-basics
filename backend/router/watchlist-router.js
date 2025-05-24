@@ -7,7 +7,10 @@ class WatchlistRouter {
         this.databaseUtils = databaseUtils;    
         this.watchlist = new Watchlist(this.databaseUtils);
     }
-
+    /**
+     * Loads all the routes for the watchlist entity.
+     * @return Void
+     */
     loadWatchlistRoutes(){
         this.app.get('/watchlist', this.watchlist.getAllFromWatchlist);
         this.app.get('/watchlist/:movieid', this.watchlist.getFromWatchlist)

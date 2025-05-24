@@ -5,7 +5,11 @@ class WatchlistModel extends Model{
         super(db);
     }
 
-
+    /**
+     * Marks a movie as watched in the watchlist.   
+     * @param {*} movieId - The ID of the movie to mark as watched.
+     * @returns Void OR error object if it should happen. 
+     */
     async markMovieAsWatched(movieId){
         const sql = `INSERT INTO watchlist (movie_id, watched) VALUES ('${movieId}', '1')
                      ON CONFLICT(movie_id) DO UPDATE SET
@@ -20,6 +24,12 @@ class WatchlistModel extends Model{
         }            
     }
 
+    /**
+     * Takes a movie ID and sets it in the watchlist with watched = 0.
+     * If the movie is already in the watchlist, it updates the watched status to 0.  
+     * @param {*} movieId - The ID of the movie to put into the watchlist.
+     * @returns Void OR error object if it should happen. 
+     */
     async putMovieInWatchlist(movieId){
 
         const sql = `INSERT INTO watchlist (movie_id, watched) VALUES ('${movieId}', '0')
@@ -35,6 +45,11 @@ class WatchlistModel extends Model{
         }
     }
 
+    /**
+     * Uses the watchlistMoviesQuery to fetch all movies from the watchlist.
+     * @param {*} filter - Optional filter to get only watched or not-watched movies.
+     * @returns Void OR error object if it should happen.
+     */
     async getAllMoviesFromWatchlist(filter){
 
         const sql = this.watchlistMoviesQuery(null, filter);
@@ -49,6 +64,12 @@ class WatchlistModel extends Model{
 
     }
 
+    /**
+     * Builds a SQL query to fetch movies from the watchlist, optionally filtered by movie ID and watched status.
+     * @param {*} id - Optional movie ID to filter the results.
+     * @param {*} filter - Optional filter to get only watched or not-watched movies.
+     * @returns SQL query string to fetch movies from the watchlist.
+     */
     watchlistMoviesQuery(id = null, filter = null){
 
         let having = ``;
@@ -83,9 +104,13 @@ class WatchlistModel extends Model{
                 ${having}
                 ORDER BY movie.movie_title ASC;
         `;
-
     }
 
+    /**
+     * Fetches a movie from the watchlist based on the given movie ID.
+     * @param {*} movieId - The ID of the movie to fetch from the watchlist.
+     * @returns Movie data in a JSON object OR null if the movie is not found.
+     */
     async getMovieFromWatchlist(movieId){
 
         const sql = this.watchlistMoviesQuery(movieId);
@@ -98,7 +123,11 @@ class WatchlistModel extends Model{
             throw new Error(error.message);
         }
     }
-
+    /**
+     * Removes a movie from the watchlist based on the given movie ID.
+     * @param {*} movieId - The ID of the movie to remove from the watchlist.
+     * @returns Void OR error object if it should happen.
+     */
     async removeMovieFromWatchlist(movieId){
 
         const sql = `DELETE FROM watchlist WHERE movie_id = ${movieId}`;

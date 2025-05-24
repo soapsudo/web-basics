@@ -13,6 +13,13 @@ class MovieModel extends Model{
     }
 
 
+    /**
+    * Adds a new movie record to the database, using the given movie data.
+    * 
+    * @param {*} movieData - Object with the necessary data for a movie record to be added into the database.
+    * @returns Object with the inserted movie data OR error object if it should happen.
+    */
+
     async addMovie(movieData) {
 
         const actorNames = movieData.actors.split(',');
@@ -52,6 +59,13 @@ class MovieModel extends Model{
 
     }
 
+    /**
+    * Gets all of the currently known movie records in the database, if there is no movie id given.
+    * 
+    * @param {*} search - Search string to filter the movies.
+    * @param {*} sort - Sort order for the movies (e.g., 'a-z', 'z-a').
+    * @returns Object with the all of the movie records data OR error object if it should happen.
+    */
 
     async getAllMovies(id = null, search = null, sort = null){
         
@@ -67,6 +81,12 @@ class MovieModel extends Model{
 
     }
 
+    /**
+    * Gets one movie record data from the database, based on the given movie id.
+    * 
+    * @param {*} id - The id of the movie record to be fetched from the database.
+    * @returns Object with the movie record data OR error object if it should happen.
+    */
     async getOneMovie(id){
 
         const sql = this.moviesQuery(id);
@@ -80,6 +100,12 @@ class MovieModel extends Model{
         }
     }
 
+    /**
+    * Deletes one movie record data from the database, based on the given movie id.
+    * 
+    * @param {*} id - The id of the movie record to be fetched from the database.
+    * @returns Null OR error object if it should happen.
+    */
     async deleteMovie(id){
 
         const sql = `DELETE FROM movie WHERE movie_id = ${id}`;
@@ -94,6 +120,13 @@ class MovieModel extends Model{
 
     }
 
+    /**
+     * A helper function that builds a query string to insert a movie record into the database.
+     * 
+     * @param {*} movieData - Object with the necessary data for the insert query.
+     * @param {*} directorId - The ID of the director associated with the movie.
+     * @returns Query string to insert a movie record in the database.
+     */
     insertQuery(movieData, directorId){
         return `INSERT INTO movie (category_id, director_id, movie_title, image, description, release_year, score)
                 VALUES ('${movieData.category}', '${directorId}', '${movieData.movie_title}', '${movieData.image}', '${movieData.description}', '${movieData.year}', '${movieData.score}')
@@ -106,6 +139,15 @@ class MovieModel extends Model{
                 score = excluded.score;`;
     }
 
+    /**
+     * A helper function that build a query string to fetch movie records from the database.
+     * 
+     * @param {*} id - If one movie record is requested, the id of that movie.
+     * @param {*} search - If a search string is given, it will filter the movie records based on the movie title.
+     * @param {*} sort - The sort order for the movie records ('a-z', 'z-a').
+     * @param {*} joinType - The type of join to use when fetching the movie records ('INNER', 'LEFT').
+     * @returns 
+     */
     moviesQuery(id = null, search = null, sort = 'a-z', joinType = 'INNER'){
 
         let where = ``;
@@ -138,6 +180,11 @@ class MovieModel extends Model{
                 ORDER BY movie.movie_title ${order};`;
     }
 
+    /**
+     * Checks if the given movie id is in the valid range of existing movie ids in the database.
+     * @param {*} id - The movie id to check.
+     * @returns True if the id is valid, false otherwise.
+     */
     async isIdInRange(id){
 
         if(id < 1) return false;

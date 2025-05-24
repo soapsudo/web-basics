@@ -8,6 +8,11 @@ class MovieRouter {
         this.movie = new Movie(this.databaseUtils);
     }
 
+    /**
+     * Loads all the routes for the movie entity.
+     * @param {*} upload - Callback function for handling file uploads.
+     * @return Void
+     */
     loadMovieRoutes(upload){
         this.app.get('/movies', this.movie.getAll);  
         this.app.get('/movies/:id', this.movie.getOne);
