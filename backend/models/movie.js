@@ -171,7 +171,7 @@ console.log(sql);
      */
     insertQuery(movieData, directorId){
         return `INSERT INTO movie (category_id, director_id, movie_title, image, description, release_year, score)
-                VALUES ('${movieData.category}', '${directorId}', '${movieData.movie_title}', '${movieData.image}', '${movieData.description}', '${movieData.year}', '${movieData.score}')
+                VALUES ('${movieData.category}', '${directorId}', '${movieData.movie_title.replaceAll("'", "")}', '${movieData.image}', '${movieData.description.replaceAll("'", "")}', '${movieData.year}', '${movieData.score}')
                 ON CONFLICT(movie_title) DO UPDATE SET
                 category_id = excluded.category_id,
                 director_id = excluded.director_id,
@@ -193,7 +193,7 @@ console.log(sql);
         return `UPDATE movie 
                 SET category_id = '${movieData.category}',
                     director_id = '${directorId}',
-                    movie_title = '${movieData.movie_title}',
+                    movie_title = '${movieData.movie_title.replaceAll("'", "")}',
                     image = '${movieData.image}',
                     description = '${movieData.description.replaceAll("'", "")}',
                     release_year = '${movieData.year}',
