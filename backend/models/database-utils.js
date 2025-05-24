@@ -5,6 +5,7 @@ class DatabaseUtils {
 
     static db;
 
+    //Initializes a new database if it doesn't exist via a static singleton. Creates tables.
     constructor(rootDirectory) {
         
         this.filepath = rootDirectory + '/database.sqlite';
@@ -19,6 +20,12 @@ class DatabaseUtils {
 
     }
 
+    /**
+     * Makes a new sqlite database in the given directory.
+     * 
+     * @param {*} filepath - File path where the new database needs to be made. 
+     * @returns Void.
+     */
     initialiseDatabase(filepath) {
 
         const db = new sqlite3.Database(filepath, (error) => {
@@ -32,6 +39,12 @@ class DatabaseUtils {
         
     }
 
+    /**
+     * Executes create queries needed for the business logic of the app.
+     * 
+     * @param {*} filepath - File path where the new database needs to be made. 
+     * @returns Void OR logs an error if the queries couldn't be executed.
+     */
     async createTables() {
         try{
             await this.execute(initialQuery);
@@ -42,7 +55,8 @@ class DatabaseUtils {
     }
 
     /**
-     * Alle query wrappers zijn gevonden op https://www.sqlitetutorial.net/sqlite-nodejs
+     * Query wrappers for executing basic operations on the sqlite database.
+     * Source: https://www.sqlitetutorial.net/sqlite-nodejs
      */
     fetchAll(sql, params = []) {
         return new Promise((resolve, reject) => {

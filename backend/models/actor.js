@@ -6,6 +6,17 @@ class ActorModel extends Model {
         super(db);
     }
 
+
+    /**
+     * Inserts actors for the given movie entity record, with checks if the given actors are already saved in the database.
+     * Actor records known in the database get reused.
+     * 
+     * @param {*} actors - JSON array with actor datas. 
+     * @param {*} movieId - Given movie for which the actor recods need to be inserted.
+     * @returns Void OR an error if the query didn't go through.
+     */
+
+
     async insertActorsForMovie(actors, movieId) {
     
         for (let i = 0; i < actors.length; i++) {
@@ -48,7 +59,16 @@ class ActorModel extends Model {
             }
         }
     }
-    
+
+
+    /**
+     * Inserts an actor record into the database. If the record with exactly same data already exists, it gets updated.
+     * 
+     * @param {*} firstName - Actor's first name. 
+     * @param {*} lastName - Actor's last name.
+     * @returns JSON object with the inserted actor entity record OR an error if the query didn't go through.
+     */
+
     async insertActorIntoActor(firstName, lastName) {
         
         try {
@@ -64,6 +84,14 @@ class ActorModel extends Model {
         }
     }
     
+    /**
+     * Adds a new many-to-many relation for the actor and movie.
+     * 
+     * @param {*} actorId - Actor entity record ID. 
+     * @param {*} movieId - Movie entity record ID.
+     * @returns Void OR an error if the query didn't go through.
+     */
+
     async insertActorIntoActorMovie(actorId, movieId) {
 
         try {
@@ -77,6 +105,14 @@ class ActorModel extends Model {
         }
     }
     
+
+    /**
+     * Gets an actor entity record from the database based on the first and last name.
+     * 
+     * @param {*} firstName - Actor's first name. 
+     * @param {*} lastName - Actor's last name.
+     * @returns JSON object with the actor entity record data OR an error if the query didn't go through.
+     */
     async getActorByFullName(firstName, lastName) {
        
         try {

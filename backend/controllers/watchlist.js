@@ -10,22 +10,31 @@ class Watchlist extends BaseController{
         this.watchlistModel = new WatchlistModel(databaseUtils);
     }
 
-    markAsWatched = async (req, res) => {
+    /**
+     * Marks the movie entity record saved in the watchlist as 'watched'.
+     * 
+     * @param {*} req - Request from the middleware. 
+     * @param {*} res - Response to be sent.
+     * @param {*} next - Callback function to the global error handler.
+     * @returns JSON message that the request was successful OR an error if the request didn't go through.
+     */
+
+    markAsWatched = async (req, res, next) => {
 
         const id = req.params.movieid;
 
         if(!id || isNaN(id)){
-            throw{
+            return next({
                 status: statusCodes.BAD_REQUEST,
                 message: `Invalid ID provided.`
-            }
+            });
         } 
         
         if(id < 1){
-            throw{
+            return next({
                 status: statusCodes.BAD_REQUEST,
                 message: `Invalid ID provided.`
-            }
+            });
         }
 
         try{
@@ -33,30 +42,39 @@ class Watchlist extends BaseController{
             return res.status(201).json({message: `Movie with the movie ID: ${id} marked as watched.`});
 
         }catch(error){
-            throw{
+            return next({
                 status: statusCodes.SERVER_ERROR,
                 message: `${error.message}`
-            }
+            });
         }
     }
 
+    /**
+     * Adds a new movie entity record to the 'watchlist'.
+     * 
+     * @param {*} req - Request from the middleware. 
+     * @param {*} res - Response to be sent.
+     * @param {*} next - Callback function to the global error handler.
+     * @returns JSON message that the request was successful OR an error if the request didn't go through.
+     */
 
-    addToWatchlist = async (req, res) => {
+
+    addToWatchlist = async (req, res, next) => {
 
         const id = req.params.movieid;
 
         if(!id || isNaN(id)){
-            throw{
+            return next({
                 status: statusCodes.BAD_REQUEST,
                 message: `Invalid ID provided.`
-            }
+            });
         } 
 
         if(id < 1){
-            throw{
+            return next({
                 status: statusCodes.BAD_REQUEST,
                 message: `Invalid ID provided.`
-            }
+            });
         } 
 
         try{
@@ -64,24 +82,34 @@ class Watchlist extends BaseController{
             return res.status(201).json({message: `Movie with the movie ID: ${id} inserted into the watchlist.`});
 
         }catch(error){
-            throw{
+            return next({
                 status: statusCodes.SERVER_ERROR,
                 message: `${error.message}`
-            }
+            });
         }
     }
 
-    getAllFromWatchlist = async (req, res) => {
+    /**
+     * Gets all of the movie entities saved in the 'watchlist'.
+     * 
+     * @param {*} req - Request from the middleware. 
+     * @param {*} res - Response to be sent.
+     * @param {*} next - Callback function to the global error handler.
+     * @returns JSON object with all of the movie entity records from the database OR an error if the request didn't go through.
+     */
+
+
+    getAllFromWatchlist = async (req, res, next) => {
 
         const filter = req.query.filter;
 
         if(filter){
             if(filter === 'not-watched' || filter === 'watched');
             else{
-                throw{
+                return next({
                     status: statusCodes.BAD_REQUEST,
                     message: 'Invalid filter provided.'
-                }
+                });
             } 
         }
 
@@ -90,36 +118,52 @@ class Watchlist extends BaseController{
             return res.status(200).json(watchlistMovies);
 
         }catch(error){
-            throw{
+            return next({
                 status: statusCodes.SERVER_ERROR,
                 message: `${error.message}`
-            }
+            });
         }
     }
 
-    getFromWatchlist = async (req, res) => {
+    /**
+     * Gets one movie entity from the watchlist, based on the id given in the path parameter.
+     * 
+     * @param {*} req - Request from the middleware. 
+     * @param {*} res - Response to be sent.
+     * @param {*} next - Callback function to the global error handler.
+     * @returns JSON object with the movie entity record data OR an error if the request didn't go through.
+     */
+
+    getFromWatchlist = async (req, res, next) => {
 
         const id = req.params.movieid;
 
         if(!id || isNaN(id)){
-            throw{
+            return next({
                 status: statusCodes.BAD_REQUEST,
                 message: `No movie ID provided.`
-            }
+            });
         } 
 
         if(id < 1){
-            throw{
+            return next({
                 status: statusCodes.BAD_REQUEST,
                 message: `Invalid ID provided.`
-            }
+            });
         }
 
         try{
             const movie = await this.watchlistModel.getMovieFromWatchlist(id);
 
-            if(movie) return res.status(200).json(movie);
-            else return res.status(404).json({message: `No movie with the movie ID: ${id} found on the watchlist.`});
+            if(movie){
+                return res.status(200).json(movie);
+            
+            } else {
+                return next({
+                    status: statusCodes.NOT_FOUND,
+                    message: `No movie with the movie ID: ${id} found on the watchlist.`
+                });
+            }
 
         }catch(error){
             throw{
@@ -129,22 +173,31 @@ class Watchlist extends BaseController{
         }
     }
 
-    removeFromWatchlist = async (req, res) => {
+    /**
+     * Deletes a given movie entity record from the 'watchlist'.
+     * 
+     * @param {*} req - Request from the middleware. 
+     * @param {*} res - Response to be sent.
+     * @param {*} next - Callback function to the global error handler.
+     * @returns JSON message that the request was successful OR an error if the request didn't go through.
+     */
+
+    removeFromWatchlist = async (req, res, next) => {
 
         const id = req.params.movieid;
 
         if(!id || isNaN(id)){
-            throw{
+            return next({
                 status: statusCodes.BAD_REQUEST,
                 message: `No movie ID provided.`
-            }
+            });
         }
 
         if(id < 1){
-            throw{
+            return next({
                 status: statusCodes.BAD_REQUEST,
                 message: `Invalid ID provided.`
-            }
+            });
         }
 
         try{
@@ -152,10 +205,10 @@ class Watchlist extends BaseController{
             return res.status(200).json({message: `Movie with the movie ID: ${id} deleted from the watchlist.`});
 
         }catch(error){
-            throw{
+            return next({
                 status: statusCodes.SERVER_ERROR,
                 message: `${error.message}`
-            }
+            });
         }
     }
 }

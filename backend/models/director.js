@@ -6,6 +6,15 @@ class DirectorModel extends Model{
         super(db);
     }
 
+
+    /**
+     * Gets the data of a director entity record saved in the database, based on the given first name and last name.
+     * If the record doesn't exist, it gets inserted into the database.
+     * 
+     * @param {*} firstName - Director's first name. 
+     * @param {*} lastName - Director's last name.
+     * @returns Director data in a JSON object OR an error if the query didn't go through.
+     */
     async getDirector(firstName, lastName) {
         
         const sql = `SELECT * FROM director WHERE first_name = '${firstName}' AND last_name = '${lastName}' LIMIT 1;`;
@@ -24,7 +33,13 @@ class DirectorModel extends Model{
         }
     }
     
-
+     /**
+     * Inserts a new director record into the database, using the given first name and last name.
+     * 
+     * @param {*} firstName - Director's first name. 
+     * @param {*} lastName - Director's last name.
+     * @returns Director data in a JSON object OR an error if the query didn't go through.
+     */
     async insertDirector(firstName, lastName) {
 
         const sql = `INSERT OR REPLACE INTO director (first_name, last_name) VALUES ('${firstName}', '${lastName}');`;

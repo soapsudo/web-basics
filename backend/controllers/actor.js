@@ -9,16 +9,24 @@ class Actor extends BaseController{
         this.actorModel = new ActorModel(databaseUtils);
     }
 
-    getActor = async (req, res) => {
+    /**
+     * Gets the actor object based on his first name and last name.
+     * 
+     * @param {*} req - Request from the middleware. 
+     * @param {*} res - Response to be sent.
+     * @param {*} next - Callback function to the global error handler.
+     * @returns JSON object with the actor data OR an error if the request didn't go through.
+     */
+    getActor = async (req, res, next) => {
 
         const firstName = req.query.first;
         const lastName = req.query.last;
 
         if(!firstName || !lastName){
-            throw {
+            return next({
                 status: statusCodes.BAD_REQUEST,
                 message: `Invalid request, no actor data provided.`
-            }
+            });
         }
 
         try{
@@ -26,10 +34,10 @@ class Actor extends BaseController{
             return res.status(200).json(actor);
 
         }catch(error){
-            throw{
+            return next({
                 status: statusCodes.SERVER_ERROR,
                 message: `Couldn't get the requested actor: ${error}`
-            }
+            });
         }
 
     }
