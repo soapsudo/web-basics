@@ -23,6 +23,25 @@ class Movie extends BaseController {
 
     updateMovie = async (req, res, next) => {
 
+        const parsedId = parseInt(req.params.movieId);
+
+        if (isNaN(parsedId)){
+            return next({
+                status: statusCodes.BAD_REQUEST,
+                message: `Invalid ID provided.`
+            });
+        }
+
+        const inRange = await this.movieModel.isIdInRange(parsedId);
+        if (inRange === false){
+            return next({
+                status: statusCodes.BAD_REQUEST,
+                message: `Invalid ID provided.`
+            });
+        } 
+
+        const movie_id = parsedId;
+
         if (!req.file) {
             return next({
                 status: statusCodes.BAD_REQUEST,
@@ -42,6 +61,7 @@ class Movie extends BaseController {
         try {
             
             const movie = {
+                movie_id,
                 movie_title,
                 category,
                 director_first_name,

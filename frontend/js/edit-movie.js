@@ -273,8 +273,8 @@ async function addMovie() {
           formData.append('year', year);
           formData.append('actors', actors);
 
-          const response = await fetch('http://localhost:3000/movie', {
-               method: 'POST',
+          const response = await fetch(`http://localhost:3000/movie/${movieId}`, {
+               method: 'PUT',
                body: formData
           });
 

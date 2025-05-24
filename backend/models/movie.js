@@ -30,11 +30,21 @@ class MovieModel extends Model{
             const director = await this.director.getDirector(movieData.director_first_name, movieData.director_last_name);
 
             if (director && 'director_id' in director && director.director_id !== null && director.director_id !== undefined && director.director_id !== '') {
-                sql = this.insertQuery(movieData, director.director_id);
 
+                if(movieData.movie_id){
+                   sql = this.updateQuery(movieData, director.director_id) 
+                }else{
+                   sql = this.insertQuery(movieData, director.director_id);
+                }
+                
             } else {
                 const insertedDirector = await this.director.insertDirector(movieData.director_first_name, movieData.director_last_name);
-                sql = this.insertQuery(movieData, insertedDirector.director_id);
+
+                if(movieData.movie_id){
+                   sql = this.updateQuery(movieData, insertedDirector.director_id) 
+                }else{
+                   sql = this.insertQuery(movieData, insertedDirector.director_id);
+                }
             }
 
         }catch(error){
@@ -131,6 +141,25 @@ class MovieModel extends Model{
         return `INSERT INTO movie (category_id, director_id, movie_title, image, description, release_year, score)
                 VALUES ('${movieData.category}', '${directorId}', '${movieData.movie_title}', '${movieData.image}', '${movieData.description}', '${movieData.year}', '${movieData.score}')
                 ON CONFLICT(movie_title) DO UPDATE SET
+                category_id = excluded.category_id,
+                director_id = excluded.director_id,
+                image = excluded.image,
+                description = excluded.description,
+                release_year = excluded.release_year,
+                score = excluded.score;`;
+    }
+
+    /**
+     * A helper function that builds a query string to update a movie record in the database.
+     * 
+     * @param {*} movieData - Object with the necessary data for the insert query.
+     * @param {*} directorId - The ID of the director associated with the movie.
+     * @returns Query string to update a movie record in the database.
+     */
+    updateQuery(movieData, directorId){
+        return `INSERT INTO movie (movie_id, category_id, director_id, movie_title, image, description, release_year, score)
+                VALUES ('${movieData.movie_id}', '${movieData.category}', '${directorId}', '${movieData.movie_title}', '${movieData.image}', '${movieData.description}', '${movieData.year}', '${movieData.score}')
+                ON CONFLICT(movie_id) DO UPDATE SET
                 category_id = excluded.category_id,
                 director_id = excluded.director_id,
                 image = excluded.image,
