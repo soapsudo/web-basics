@@ -239,7 +239,7 @@ async function getRemoteImage(imageUrl){
  */
 async function addMovie() {
 
-    document.getElementById(`add-movie`).addEventListener(`submit`, async function(e){
+    document.getElementById(`edit-movie`).addEventListener(`submit`, async function(e){
         
         e.preventDefault();
 

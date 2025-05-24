@@ -42,9 +42,11 @@ class MovieModel extends Model{
         
         try {
 
+console.log(sql);
+
             const insert = await this.db.execute(sql);            
             let insertedMovieData = await this.db.fetchFirst(this.moviesQuery(movieData.movie_id, movieData.movie_title, 'a-z', `LEFT`));
-    
+            
             const insertedActorsForMovie = await this.actor.insertActorsForMovie(actorNames, insertedMovieData.movie_id);
 
             insertedMovieData = await this.db.fetchFirst(this.moviesQuery(null, movieData.movie_title));
@@ -193,7 +195,7 @@ class MovieModel extends Model{
                     director_id = '${directorId}',
                     movie_title = '${movieData.movie_title}',
                     image = '${movieData.image}',
-                    description = '${movieData.description}',
+                    description = '${movieData.description.replaceAll("'", "")}',
                     release_year = '${movieData.year}',
                     score = '${movieData.score}'
                 WHERE 
