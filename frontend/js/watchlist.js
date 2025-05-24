@@ -1,6 +1,10 @@
 const params = new URLSearchParams(window.location.search);
 const filter = params.get(`filter`);
 
+/**
+ * Gets the URL needed for the backend API call based on the given filter parameters.
+ * @returns {string}
+ */
 function getUrl(){
   if(filter){
     return `http://localhost:3000/watchlist?filter=${filter}`;
@@ -9,6 +13,10 @@ function getUrl(){
   return `http://localhost:3000/watchlist`;
 }
 
+/**
+ * Makes the needed backend API call and makes HTML elements with the recieved data.
+ * @returns {void}
+ */
 async function loadMovies() {
   try {
     const response = await fetch(getUrl());

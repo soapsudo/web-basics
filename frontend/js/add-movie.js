@@ -1,6 +1,12 @@
 const actorList = document.getElementById('actor_list');
 let actorCount = 0;
  
+
+/**
+ * Takes the unordered list of all inserted actors when adding a movie and coverts it to one 
+ * comma seperated string. 
+ * @returns {string} - String with all of the actors, comma seperated.
+ */
 async function getActorsFromList() {
 
      let actors = '';
@@ -27,7 +33,10 @@ async function getActorsFromList() {
      return actors;
      
 }
-
+/**
+ * Checks if there are actors added in the form's actor list.
+ * @returns {boolean} True if there are actors added into the list, false if there are none.
+ */
 function validateActors(){
      
      const actors = actorList.children;
@@ -37,6 +46,11 @@ function validateActors(){
      return false;
 }
 
+/**
+ * Removes an actor from the HTML list and from the array that 
+ * is later used for the movie record actor insertion.
+ * @returns {void} 
+ */
 async function removeActor(e){
 
      e.preventDefault();
@@ -46,6 +60,11 @@ async function removeActor(e){
      if(actorLi) actorLi.remove();
 }
 
+/**
+ * Adds the actor using the first and the last name in the form, IF it is valid.
+ * Makes a new HTML element that lets the user see the added data immediately.
+ * @return {void} 
+ */
 async function addActor(){
 
      document.getElementById('add-actor').onclick = async function() {
@@ -83,7 +102,10 @@ async function addActor(){
      }
 }
 
-
+/**
+ * Takes the user input in the form on the HTML page and makes the call to the backend to add the movie record.
+ * @returns {void}
+ */
 async function addMovie() {
 
     document.getElementById(`add-movie`).addEventListener(`submit`, async function(e){

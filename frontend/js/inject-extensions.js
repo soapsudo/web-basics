@@ -1,3 +1,7 @@
+/**
+ * Loads the header and the footer inner HTML for every page where the script gets used.
+ * @returns {void}
+ */
 async function loadElements(){
     document.getElementById("header").innerHTML = `
     <header class="header">
@@ -19,6 +23,12 @@ document.getElementById("footer").innerHTML = `
 }
 
 class ErrorHandler {
+    /**
+     * Used for pop-ups where the user sees the status of the operations executed while the frontend communicates with the backend.
+     * @param {*} success - Boolean to mark if the operation weas successful (true if yes, false if no).
+     * @param {*} message - Message to be displayed in the pop-up.
+     * @param {*} document - HTML page where the pop-up is to be displayed.
+     */
     constructor(success, message, document){
         this.document = document;
         this.loadHTML(success, message);

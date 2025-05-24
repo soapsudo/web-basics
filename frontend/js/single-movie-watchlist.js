@@ -2,7 +2,10 @@ const params = new URLSearchParams(window.location.search);
 const id = params.get(`id`);
 let addToWatchedHandler;
 
-
+/**
+ * Changes the button to its 'disabled' styling.
+ * @returns {void}
+ */
 async function changeAddToWatched(){
     const button = document.getElementById(`single-movie-watchlist-watched`);
     
@@ -12,6 +15,10 @@ async function changeAddToWatched(){
     button.innerText = `Already watched`;
 }
 
+/**
+ * Uses the movieid on the single movie page to make an API call that removes it from the watchlist.
+ * @returns {void}
+ */
 async function removeMovieFromWatchlist(){
     try{
         const response = await fetch(`http://localhost:3000/watchlist/${id}`, {
@@ -27,12 +34,21 @@ async function removeMovieFromWatchlist(){
     }
 }
 
+/**
+ * Sets the click listener on the button that is used to delete the movie from the watchlist.
+ * @returns {void}
+ */
 async function setDeleteButtonLink(){
     const editButton = document.getElementById(`single-movie-watchlist-remove-from-watchlist`);
 
     editButton.addEventListener(`click`, removeMovieFromWatchlist);
 }
 
+/**
+ * Marks the given movie as watched, using the backend API. Changes the styling of the button if the request was successful.
+ * @param {*} id - The movie id.
+ * @returns {void}
+ */
 async function addToWatchedListener(id){
 
     addToWatchedHandler = async function(e){
@@ -62,6 +78,11 @@ async function addToWatchedListener(id){
 
 }
 
+/**
+ * Checks if the movie with the given movie id is marked as watched in the watchlist.
+ * @param {*} id - The movie id.
+ * @returns {void}
+ */
 async function checkIfWatched(id){
     try{
         const response = await fetch(`http://localhost:3000/watchlist/${id}`, {
@@ -80,6 +101,12 @@ async function checkIfWatched(id){
     }
 }
 
+/**
+ * Makes an API call to the backend using the given movie id, to fetch all of the necessary data for the display in HTML elements.
+ * If the request is successful, sets the data onto the HTML page.
+ * @param {*} id - The movie id.
+ * @returns {void} 
+ */
 async function loadData(id) {
     
     try{

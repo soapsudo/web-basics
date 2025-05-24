@@ -2,6 +2,10 @@ const params = new URLSearchParams(window.location.search);
 const search = params.get(`search`);
 const sort = params.get(`sort`);
 
+/**
+ * Checks if the current HTML page has any sort or search query parameters. Returns the right backend API call based on the search/sort values.
+ * @returns {string}
+ */
 function getUrl(){
   if(search){
     return `http://localhost:3000/movies?search=${search}`;
@@ -15,6 +19,11 @@ function getUrl(){
   return `http://localhost:3000/movies`;
 }
 
+/**
+ * Creates a HTML element that is to be used as the first entry in the movie list.
+ * A button that redirects to the add movie form.
+ * @returns {Element}
+ */
 function getAddMovieCard(){
 
   const addMovieCard = document.createElement(`li`);
@@ -29,6 +38,11 @@ function getAddMovieCard(){
   return addMovieCard;
 }
 
+/**
+ * Makes an API call to the backend, eventually using the search/sort values. 
+ * Sets movie elements in a list with the data that was recieved from the API call.
+ * @returns {void}
+ */
 async function loadMovies() {
   try {
     const response = await fetch(getUrl());
@@ -80,9 +94,6 @@ async function loadMovies() {
     }else{
       new ErrorHandler(false, `Error fetching movies: ${data}`)
     }
-
-
-
   } catch (error) {
     new ErrorHandler(false, `Error fetching movies: ${error}`, document);
   }

@@ -13,6 +13,11 @@ const removedActors = [];
 const actorList = document.getElementById('actor_list');
 let actorCount = 0;
  
+/**
+ * Adds the listener on the button that deletes the movie record.
+ * Uses the movieid from the HTML page as the path parameter needed for the movie deletion.
+ * @returns {void}
+ */
 async function addDeleteListener(){
      document.getElementById(`delete-movie`).addEventListener('click', async function(e){
 
@@ -35,6 +40,11 @@ async function addDeleteListener(){
      });
 }
 
+/**
+ * Takes the unordered list of all inserted actors when adding a movie and coverts it to one 
+ * comma seperated string. 
+ * @returns {string} - String with all of the actors, comma seperated.
+ */
 async function getActorsFromList(list) {
 
      let actors = '';
@@ -62,6 +72,10 @@ async function getActorsFromList(list) {
      
 }
 
+/**
+ * Checks if there are actors added in the form's actor list.
+ * @returns {boolean} True if there are actors added into the list, false if there are none.
+ */
 function validateActors(){
      
      const actors = actorList.children;
@@ -71,6 +85,12 @@ function validateActors(){
      return false;
 }
 
+
+/**
+ * Removes an actor from the HTML list and from the array that 
+ * is later used for the movie record actor insertion.
+ * @returns {void} 
+ */
 async function removeActor(e){
 
      e.preventDefault();
@@ -81,6 +101,10 @@ async function removeActor(e){
      if(actorLi) actorLi.remove();
 }
 
+/**
+ * Removes the many-to-many relation in the backend using the array of actors that have been removed from the form
+ * @returns {void}
+ */
 async function removeRemovedActors(){
 
      const actorsToBeRemoved = removedActors;
@@ -128,6 +152,13 @@ async function removeRemovedActors(){
      }
 }
 
+/**
+ * Adds an actor to the backend, using the endpoint that checks if the actor already exists.
+ * This is necessary because the many-to-many relation needs the actorid and a movieid to make the coupling.
+ * @param {*} firstName - First name of the actor to be added.
+ * @param {*} lastName - Last name of the actor to be added.
+ * @returns {void} 
+ */
 async function addActor(firstName, lastName){
      actorCount++;
 
@@ -153,6 +184,10 @@ async function addActor(firstName, lastName){
      actorList.setAttribute('style', 'display: block');
 }
 
+/**
+ * Adds a click listener to the button used for adding actors from the form fields.
+ * @returns {void}
+ */
 async function addActorListener(){
 
      document.getElementById('add-actor').onclick = async function() {
@@ -175,6 +210,12 @@ async function addActorListener(){
      }
 }
 
+/**
+ * Makes a API call to the backend that gets the image from a remote link and returns it as a file object.
+ * This is necessary because the images get saved as links in the database, and the form asks for a file upload.
+ * @param {*} imageUrl - The link where the remote image is saved.
+ * @returns {File} - The image in a file format.
+ */
 async function getRemoteImage(imageUrl){
 
      try{
@@ -192,6 +233,10 @@ async function getRemoteImage(imageUrl){
      }
 }
 
+/**
+ * Adds a click event listener on the button that is used to submit the form for adding the movie (editing in this case).
+ * @returns {void}
+ */
 async function addMovie() {
 
     document.getElementById(`add-movie`).addEventListener(`submit`, async function(e){
@@ -246,6 +291,12 @@ async function addMovie() {
 
 }
 
+/**
+ * Longest function in the whole project. Used to make a call to the backend that returns all of the data for the movie that is being edited.
+ * All of the data recieved from the backend needs to be set in the edit form, so that the user sees which data he can edit.
+ * This is also the function where the remote image is set as a file object.
+ * @returns {void}
+ */
 async function setFieldValues() {
 
      if (movieId) {

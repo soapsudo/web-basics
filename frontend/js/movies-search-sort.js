@@ -1,3 +1,7 @@
+/**
+ * Defines a listener for the search form. Redirects the user to the link that corresponds to his search term.
+ * @returns {void}
+ */
 async function searchListener(){
     document.getElementById(`movies-search`).addEventListener(`submit`, function(e){
 
@@ -6,7 +10,10 @@ async function searchListener(){
     if(title) window.location.href = `../html/movies.html?search=${title}`;
 });
 }
-
+/**
+ * Defines a listener for the sort buttons. Redirects the user to the link that corresponds to his chosen sort option.
+ * @returns {void}
+ */
 async function sortListener(){
     document.getElementById(`a-z`).addEventListener(`click`, function(e){
          window.location.href = `../html/movies.html?sort=a-z`;

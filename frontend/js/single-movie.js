@@ -2,12 +2,21 @@ const params = new URLSearchParams(window.location.search);
 const id = params.get(`id`);
 let addToWatchlistHandler;
 
+/**
+ * Sets the listener for a button that redirects the user to the edit-movie form.
+ * @param {*} id - The given movie id to be edited.
+ * @returns {void}
+ */
 async function setEditButtonLink(id){
     const editButton = document.getElementById(`single-movie-edit-button`);
 
     editButton.setAttribute(`onclick`, `location.href='../html/edit-movie.html?id=${id}'`);
 }
 
+/**
+ * Changes the add to watchlist button to its 'disabled' styling.
+ * @returns {void} 
+ */
 async function changeAddToWatchlistButton(){
     const button = document.getElementById(`single-movie-add-to-watchlist`);
     
@@ -16,7 +25,11 @@ async function changeAddToWatchlistButton(){
 
     button.innerText = `On watchlist`;
 }
-
+/**
+ * Sets a listener on the button used for adding the movie to the watchlist.
+ * @param {*} id - The movie id.
+ * @returns {void}
+ */
 async function addToWatchlistListener(id){
 
     addToWatchlistHandler = async function(e){
@@ -46,7 +59,11 @@ async function addToWatchlistListener(id){
     document.getElementById(`single-movie-add-to-watchlist`).addEventListener('click', addToWatchlistHandler);
 
 }
-
+/**
+ * Checks if the movie with the given movie id is on the watchlist.
+ * @param {*} id - The movie id.
+ * @returns {void}
+ */
 async function checkIfOnWatchlist(id){
     try{
         const response = await fetch(`http://localhost:3000/watchlist/${id}`, {
@@ -66,7 +83,12 @@ async function checkIfOnWatchlist(id){
         new ErrorHandler(false, error.message, document);
     }
 }
-
+/**
+ * Makes an API call to the backend using the given movie id, to fetch all of the necessary data for the display in HTML elements.
+ * If the request is successful, sets the data onto the HTML page.
+ * @param {*} id - The movie id.
+ * @returns {void} 
+ */
 async function loadData(id) {
     
     try{
