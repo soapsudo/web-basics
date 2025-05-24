@@ -1,8 +1,6 @@
 import Model from './model.js'
 import DirectorModel from './director.js';
 import ActorModel from './actor.js';
-import { title } from 'process';
-import { join } from 'path';
 
 class MovieModel extends Model{
 
@@ -12,16 +10,13 @@ class MovieModel extends Model{
         this.actor = new ActorModel(db);
     }
 
-
     /**
-    * Adds a new movie record to the database, using the given movie data.
+    * Updates the existing movie entity record in the database, using the given NEW movie data.
     * 
     * @param {*} movieData - Object with the necessary data for a movie record to be added into the database.
     * @returns Object with the inserted movie data OR error object if it should happen.
     */
-
-    async addMovie(movieData) {
-
+    async updateMovie(movieData){
         const actorNames = movieData.actors.split(',');
 
         let sql;
@@ -31,32 +26,25 @@ class MovieModel extends Model{
 
             if (director && 'director_id' in director && director.director_id !== null && director.director_id !== undefined && director.director_id !== '') {
 
-                if(movieData.movie_id){
-                   sql = this.updateQuery(movieData, director.director_id) 
-                }else{
-                   sql = this.insertQuery(movieData, director.director_id);
-                }
+                sql = this.updateQuery(movieData, director.director_id) 
+                 
                 
             } else {
                 const insertedDirector = await this.director.insertDirector(movieData.director_first_name, movieData.director_last_name);
 
-                if(movieData.movie_id){
-                   sql = this.updateQuery(movieData, insertedDirector.director_id) 
-                }else{
-                   sql = this.insertQuery(movieData, insertedDirector.director_id);
-                }
+                sql = this.updateQuery(movieData, insertedDirector.director_id) 
+             
             }
 
         }catch(error){
             throw new Error(error.message);
         }
         
-        
         try {
 
             const insert = await this.db.execute(sql);            
-            let insertedMovieData = await this.db.fetchFirst(this.moviesQuery(null, movieData.movie_title, 'a-z', `LEFT`));
-
+            let insertedMovieData = await this.db.fetchFirst(this.moviesQuery(movieData.movie_id, movieData.movie_title, 'a-z', `LEFT`));
+    
             const insertedActorsForMovie = await this.actor.insertActorsForMovie(actorNames, insertedMovieData.movie_id);
 
             insertedMovieData = await this.db.fetchFirst(this.moviesQuery(null, movieData.movie_title));
@@ -66,7 +54,49 @@ class MovieModel extends Model{
         } catch (error) {
             throw new Error(error.message);
         }
+    }
 
+    /**
+    * Adds a new movie record to the database, using the given movie data.
+    * 
+    * @param {*} movieData - Object with the necessary data for a movie record to be added into the database.
+    * @returns Object with the inserted movie data OR error object if it should happen.
+    */
+
+    async addMovie(movieData) {
+        const actorNames = movieData.actors.split(',');
+
+        let sql;
+
+        try{
+            const director = await this.director.getDirector(movieData.director_first_name, movieData.director_last_name);
+
+            if (director && 'director_id' in director && director.director_id !== null && director.director_id !== undefined && director.director_id !== '') {
+                sql = this.insertQuery(movieData, director.director_id);
+                
+            } else {
+                const insertedDirector = await this.director.insertDirector(movieData.director_first_name, movieData.director_last_name);
+                sql = this.insertQuery(movieData, insertedDirector.director_id);
+            }
+
+        }catch(error){
+            throw new Error(error.message);
+        }
+        
+        try {
+
+            const insert = await this.db.execute(sql);            
+            let insertedMovieData = await this.db.fetchFirst(this.moviesQuery(null, movieData.movie_title, 'a-z', `LEFT`));
+        
+            const insertedActorsForMovie = await this.actor.insertActorsForMovie(actorNames, insertedMovieData.movie_id);
+
+            insertedMovieData = await this.db.fetchFirst(this.moviesQuery(null, movieData.movie_title));
+
+            return insertedMovieData;
+
+        } catch (error) {
+            throw new Error(error.message);
+        }
     }
 
     /**
@@ -157,15 +187,18 @@ class MovieModel extends Model{
      * @returns Query string to update a movie record in the database.
      */
     updateQuery(movieData, directorId){
-        return `INSERT INTO movie (movie_id, category_id, director_id, movie_title, image, description, release_year, score)
-                VALUES ('${movieData.movie_id}', '${movieData.category}', '${directorId}', '${movieData.movie_title}', '${movieData.image}', '${movieData.description}', '${movieData.year}', '${movieData.score}')
-                ON CONFLICT(movie_id) DO UPDATE SET
-                category_id = excluded.category_id,
-                director_id = excluded.director_id,
-                image = excluded.image,
-                description = excluded.description,
-                release_year = excluded.release_year,
-                score = excluded.score;`;
+
+        return `UPDATE movie 
+                SET category_id = '${movieData.category}',
+                    director_id = '${directorId}',
+                    movie_title = '${movieData.movie_title}',
+                    image = '${movieData.image}',
+                    description = '${movieData.description}',
+                    release_year = '${movieData.year}',
+                    score = '${movieData.score}'
+                WHERE 
+                    movie_id = ${movieData.movie_id}    
+                `;
     }
 
     /**
@@ -225,7 +258,7 @@ class MovieModel extends Model{
             if(id > parseInt(check.movie_id)) return false;
 
         }catch(error){
-            console.log(error.message);
+            // console.log(error.message);
             return false;
         }
 

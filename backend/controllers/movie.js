@@ -23,9 +23,10 @@ class Movie extends BaseController {
 
     updateMovie = async (req, res, next) => {
 
-        const parsedId = parseInt(req.params.movieId);
+        const parsedId = parseInt(req.params.id);
 
         if (isNaN(parsedId)){
+
             return next({
                 status: statusCodes.BAD_REQUEST,
                 message: `Invalid ID provided.`
@@ -73,7 +74,7 @@ class Movie extends BaseController {
                 image: `http://localhost:3000/uploads/${req.file.filename}`
             };
 
-            const movieInsertData = await this.movieModel.addMovie(movie);
+            const movieInsertData = await this.movieModel.updateMovie(movie);
 
             if (movieInsertData.movie_id) {
                 return res.status(201).json(movieInsertData);

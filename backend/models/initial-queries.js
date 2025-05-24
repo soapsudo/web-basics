@@ -34,7 +34,7 @@ CREATE TABLE IF NOT EXISTS movie (
     movie_id INTEGER PRIMARY KEY AUTOINCREMENT, 
     category_id INTEGER,
     director_id INTEGER,
-    movie_title VARCHAR(255) UNIQUE,
+    movie_title VARCHAR(255),
     image BLOB,
     description TEXT,
     release_year INTEGER,

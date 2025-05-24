@@ -39,9 +39,11 @@ class Image extends BaseController{
 
             const imgBuffer = await response.arrayBuffer();
 
-            res.setHeader('Content-Type', 'image/jpeg');
+            const contentType = response.headers.get('content-type');
+            res.setHeader('Content-Type', contentType || 'image/jpeg');
             res.setHeader('Access-Control-Allow-Origin', '*');
-            res.send(imgBuffer);
+
+            res.send(Buffer.from(imgBuffer));
 
 
         }catch(error){
