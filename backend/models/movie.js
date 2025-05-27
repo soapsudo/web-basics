@@ -42,8 +42,6 @@ class MovieModel extends Model{
         
         try {
 
-console.log(sql);
-
             const insert = await this.db.execute(sql);            
             let insertedMovieData = await this.db.fetchFirst(this.moviesQuery(movieData.movie_id, movieData.movie_title, 'a-z', `LEFT`));
             
