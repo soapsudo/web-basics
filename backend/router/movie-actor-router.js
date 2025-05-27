@@ -1,4 +1,4 @@
-import MovieActor from "../controllers/movie-actor.js";
+import MovieActor from "../controllers/movie-actor-controller.js";
 
 class MovieActorRouter {
 

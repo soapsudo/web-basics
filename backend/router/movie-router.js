@@ -1,4 +1,4 @@
-import Movie from "../controllers/movie.js";
+import Movie from "../controllers/movie-controller.js";
 
 class MovieRouter {
 

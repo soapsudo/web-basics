@@ -1,4 +1,4 @@
-import Image from "../controllers/image.js";
+import Image from "../controllers/image-controller.js";
 
 class ImageRouter {
 

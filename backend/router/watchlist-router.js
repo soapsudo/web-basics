@@ -1,4 +1,4 @@
-import Watchlist from "../controllers/watchlist.js";
+import Watchlist from "../controllers/watchlist-controller.js";
 
 class WatchlistRouter {
 

@@ -1,4 +1,4 @@
-import Actor from "../controllers/actor.js"
+import Actor from "../controllers/actor-controller.js"
 
 class ActorRouter{
 
