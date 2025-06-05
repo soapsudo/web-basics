@@ -72,8 +72,8 @@ class ActorModel extends Model {
     async insertActorIntoActor(firstName, lastName) {
         
         try {
-            const sql = `INSERT OR REPLACE INTO actor (first_name, last_name) VALUES ('${firstName}', '${lastName}')`;
-            await this.db.execute(sql);
+            const sql = `INSERT OR REPLACE INTO actor (first_name, last_name) VALUES (?, ?)`;
+            await this.db.execute(sql, [firstName, lastName]);
     
             const actor = await this.getActorByFullName(firstName, lastName);
     
@@ -95,8 +95,8 @@ class ActorModel extends Model {
     async insertActorIntoActorMovie(actorId, movieId) {
 
         try {
-            const sql = `INSERT INTO movie_actor (movie_id, actor_id) VALUES (${movieId}, ${actorId}) ON CONFLICT DO NOTHING`;
-            const result = await this.db.execute(sql);
+            const sql = `INSERT INTO movie_actor (movie_id, actor_id) VALUES (?, ?) ON CONFLICT DO NOTHING`;
+            const result = await this.db.execute(sql, [movieId, actorId]);
             
             return result;
 
@@ -116,8 +116,8 @@ class ActorModel extends Model {
     async getActorByFullName(firstName, lastName) {
        
         try {
-            const sql = `SELECT * FROM actor WHERE first_name = '${firstName}' AND last_name = '${lastName}'`;
-            const actor = await this.db.fetchFirst(sql);
+            const sql = `SELECT * FROM actor WHERE first_name = ? AND last_name = ?`;
+            const actor = await this.db.fetchFirst(sql, [firstName, lastName]);
     
             return actor || null;
 

@@ -20,29 +20,20 @@ class MovieModel extends Model{
         const actorNames = movieData.actors.split(',');
 
         let sql;
+        let insert;
 
         try{
             const director = await this.director.getDirector(movieData.director_first_name, movieData.director_last_name);
 
-            if (director && 'director_id' in director && director.director_id !== null && director.director_id !== undefined && director.director_id !== '') {
-
-                sql = this.updateQuery(movieData, director.director_id) 
-                 
+            console.log(this.updateQuery())
+            insert = await this.db.execute(this.updateQuery(), [movieData.category, director.director_id, movieData.movie_title, movieData.image, movieData.description, movieData.year, movieData.score, movieData.movie_id]);                 
                 
-            } else {
-                const insertedDirector = await this.director.insertDirector(movieData.director_first_name, movieData.director_last_name);
-
-                sql = this.updateQuery(movieData, insertedDirector.director_id) 
-             
-            }
-
         }catch(error){
             throw new Error(error.message);
         }
         
         try {
 
-            const insert = await this.db.execute(sql);            
             let insertedMovieData = await this.db.fetchFirst(this.moviesQuery(movieData.movie_id, movieData.movie_title, 'a-z', `LEFT`));
             
             const insertedActorsForMovie = await this.actor.insertActorsForMovie(actorNames, insertedMovieData.movie_id);
@@ -66,17 +57,17 @@ class MovieModel extends Model{
     async addMovie(movieData) {
         const actorNames = movieData.actors.split(',');
 
-        let sql;
+        let insert;
 
         try{
             const director = await this.director.getDirector(movieData.director_first_name, movieData.director_last_name);
 
             if (director && 'director_id' in director && director.director_id !== null && director.director_id !== undefined && director.director_id !== '') {
-                sql = this.insertQuery(movieData, director.director_id);
+                insert = await this.db.execute(this.insertQuery(), [movieData.category, director.director_id, movieData.movie_title, movieData.image, movieData.description, movieData.year, movieData.score]);
                 
             } else {
                 const insertedDirector = await this.director.insertDirector(movieData.director_first_name, movieData.director_last_name);
-                sql = this.insertQuery(movieData, insertedDirector.director_id);
+                insert = await this.db.execute(this.insertQuery(), [movieData.category, insertedDirector.director_id, movieData.movie_title, movieData.image, movieData.description, movieData.year, movieData.score]);
             }
 
         }catch(error){
@@ -85,7 +76,6 @@ class MovieModel extends Model{
         
         try {
 
-            const insert = await this.db.execute(sql);            
             let insertedMovieData = await this.db.fetchFirst(this.moviesQuery(null, movieData.movie_title, 'a-z', `LEFT`));
         
             const insertedActorsForMovie = await this.actor.insertActorsForMovie(actorNames, insertedMovieData.movie_id);
@@ -148,10 +138,10 @@ class MovieModel extends Model{
     */
     async deleteMovie(id){
 
-        const sql = `DELETE FROM movie WHERE movie_id = ${id}`;
+        const sql = `DELETE FROM movie WHERE movie_id = ?`;
 
         try{
-            await this.db.execute(sql);
+            await this.db.execute(sql, [id]);
             return null;
 
         }catch (error){
@@ -163,43 +153,50 @@ class MovieModel extends Model{
     /**
      * A helper function that builds a query string to insert a movie record into the database.
      * 
-     * @param {*} movieData - Object with the necessary data for the insert query.
-     * @param {*} directorId - The ID of the director associated with the movie.
      * @returns Query string to insert a movie record in the database.
      */
-    insertQuery(movieData, directorId){
+    insertQuery(){
         return `INSERT INTO movie (category_id, director_id, movie_title, image, description, release_year, score)
-                VALUES ('${movieData.category}', '${directorId}', '${movieData.movie_title.replaceAll("'", "")}', '${movieData.image}', '${movieData.description.replaceAll("'", "")}', '${movieData.year}', '${movieData.score}')
-                ON CONFLICT(movie_title) DO UPDATE SET
-                category_id = excluded.category_id,
-                director_id = excluded.director_id,
-                image = excluded.image,
-                description = excluded.description,
-                release_year = excluded.release_year,
-                score = excluded.score;`;
+                VALUES (?, ?, ?, ?, ?, ?, ?);`;
     }
+
+    // /**
+    //  * A helper function that builds a query string to insert a movie record into the database.
+    //  * 
+    //  * @param {*} movieData - Object with the necessary data for the insert query.
+    //  * @param {*} directorId - The ID of the director associated with the movie.
+    //  * @returns Query string to insert a movie record in the database.
+    //  */
+    // insertQuery(movieData, directorId){
+    //     return `INSERT INTO movie (category_id, director_id, movie_title, image, description, release_year, score)
+    //             VALUES ('${movieData.category}', '${directorId}', '${movieData.movie_title.replaceAll("'", "")}', '${movieData.image}', '${movieData.description.replaceAll("'", "")}', '${movieData.year}', '${movieData.score}')
+    //             ON CONFLICT(movie_title) DO UPDATE SET
+    //             category_id = excluded.category_id,
+    //             director_id = excluded.director_id,
+    //             image = excluded.image,
+    //             description = excluded.description,
+    //             release_year = excluded.release_year,
+    //             score = excluded.score;`;
+    // }
+
 
     /**
      * A helper function that builds a query string to update a movie record in the database.
-     * 
-     * @param {*} movieData - Object with the necessary data for the insert query.
-     * @param {*} directorId - The ID of the director associated with the movie.
      * @returns Query string to update a movie record in the database.
      */
-    updateQuery(movieData, directorId){
+    updateQuery(){
 
         return `UPDATE movie 
-                SET category_id = '${movieData.category}',
-                    director_id = '${directorId}',
-                    movie_title = '${movieData.movie_title.replaceAll("'", "")}',
-                    image = '${movieData.image}',
-                    description = '${movieData.description.replaceAll("'", "")}',
-                    release_year = '${movieData.year}',
-                    score = '${movieData.score}'
-                WHERE 
-                    movie_id = ${movieData.movie_id}    
-                `;
+                SET category_id=?,
+                    director_id=?,
+                    movie_title=?,
+                    image=?,
+                    description=?,
+                    release_year=?,
+                    score=?
+                WHERE movie_id=?`;
     }
+
 
     /**
      * A helper function that build a query string to fetch movie records from the database.

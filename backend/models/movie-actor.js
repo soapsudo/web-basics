@@ -15,10 +15,10 @@ class MovieActorModel extends Model{
     */
     async deleteMovieActorRecord(movieId, actorId){
 
-        const sql = `DELETE FROM movie_actor WHERE movie_id = ${movieId} AND actor_id = ${actorId}`;
+        const sql = `DELETE FROM movie_actor WHERE movie_id = ? AND actor_id = ?`;
 
         try{
-            await this.db.execute(sql);
+            await this.db.execute(sql, [movieId, actorId]);
 
         }catch(error){
             throw new Error(error.message);

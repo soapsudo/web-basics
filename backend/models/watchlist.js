@@ -11,13 +11,13 @@ class WatchlistModel extends Model{
      * @returns Void OR error object if it should happen. 
      */
     async markMovieAsWatched(movieId){
-        const sql = `INSERT INTO watchlist (movie_id, watched) VALUES ('${movieId}', '1')
+        const sql = `INSERT INTO watchlist (movie_id, watched) VALUES (?, '1')
                      ON CONFLICT(movie_id) DO UPDATE SET
                      movie_id = excluded.movie_id,
                      watched = excluded.watched`;
 
         try{
-            await this.db.execute(sql);
+            await this.db.execute(sql, [movieId]);
             
         }catch(error){
             throw new Error(error.message);
@@ -32,13 +32,13 @@ class WatchlistModel extends Model{
      */
     async putMovieInWatchlist(movieId){
 
-        const sql = `INSERT INTO watchlist (movie_id, watched) VALUES ('${movieId}', '0')
+        const sql = `INSERT INTO watchlist (movie_id, watched) VALUES (?, '0')
                      ON CONFLICT(movie_id) DO UPDATE SET
                      movie_id = excluded.movie_id,
                      watched = excluded.watched`;
 
         try{
-            await this.db.execute(sql);
+            await this.db.execute(sql, [movieId]);
 
         }catch(error){
             throw new Error(error.message);
@@ -130,10 +130,10 @@ class WatchlistModel extends Model{
      */
     async removeMovieFromWatchlist(movieId){
 
-        const sql = `DELETE FROM watchlist WHERE movie_id = ${movieId}`;
+        const sql = `DELETE FROM watchlist WHERE movie_id = ?`;
 
         try{
-            await this.db.execute(sql);
+            await this.db.execute(sql, [movieId]);
 
         }catch(error){
             throw new Error(error.message);

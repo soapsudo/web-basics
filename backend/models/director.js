@@ -17,10 +17,10 @@ class DirectorModel extends Model{
      */
     async getDirector(firstName, lastName) {
         
-        const sql = `SELECT * FROM director WHERE first_name = '${firstName}' AND last_name = '${lastName}' LIMIT 1;`;
+        const sql = `SELECT * FROM director WHERE first_name = ? AND last_name = ? LIMIT 1;`;
     
         try {
-            const result = await this.db.fetchAll(sql);
+            const result = await this.db.fetchAll(sql, [firstName, lastName]);
     
             if (Array.isArray(result) && result.length > 0) {
                 return result[0];
@@ -42,10 +42,10 @@ class DirectorModel extends Model{
      */
     async insertDirector(firstName, lastName) {
 
-        const sql = `INSERT OR REPLACE INTO director (first_name, last_name) VALUES ('${firstName}', '${lastName}');`;
+        const sql = `INSERT OR REPLACE INTO director (first_name, last_name) VALUES (?, ?);`;
     
         try {
-            await this.db.execute(sql);
+            await this.db.execute(sql, [firstName, lastName]);
             const inserted = await this.getDirector(firstName, lastName);
 
             return inserted;
