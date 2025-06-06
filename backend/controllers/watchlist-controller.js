@@ -25,14 +25,14 @@ class Watchlist extends BaseController{
 
         if(!id || isNaN(id)){
             return next({
-                status: statusCodes.BAD_REQUEST,
+                status: statusCodes.NOT_FOUND,
                 message: `Invalid ID provided.`
             });
         } 
         
         if(id < 1){
             return next({
-                status: statusCodes.BAD_REQUEST,
+                status: statusCodes.NOT_FOUND,
                 message: `Invalid ID provided.`
             });
         }
@@ -65,14 +65,14 @@ class Watchlist extends BaseController{
 
         if(!id || isNaN(id)){
             return next({
-                status: statusCodes.BAD_REQUEST,
+                status: statusCodes.NOT_FOUND,
                 message: `Invalid ID provided.`
             });
         } 
 
         if(id < 1){
             return next({
-                status: statusCodes.BAD_REQUEST,
+                status: statusCodes.NOT_FOUND,
                 message: `Invalid ID provided.`
             });
         } 
@@ -140,14 +140,14 @@ class Watchlist extends BaseController{
 
         if(!id || isNaN(id)){
             return next({
-                status: statusCodes.BAD_REQUEST,
+                status: statusCodes.NOT_FOUND,
                 message: `No movie ID provided.`
             });
         } 
 
         if(id < 1){
             return next({
-                status: statusCodes.BAD_REQUEST,
+                status: statusCodes.NOT_FOUND,
                 message: `Invalid ID provided.`
             });
         }
@@ -188,14 +188,14 @@ class Watchlist extends BaseController{
 
         if(!id || isNaN(id)){
             return next({
-                status: statusCodes.BAD_REQUEST,
+                status: statusCodes.NOT_FOUND,
                 message: `No movie ID provided.`
             });
         }
 
         if(id < 1){
             return next({
-                status: statusCodes.BAD_REQUEST,
+                status: statusCodes.NOT_FOUND,
                 message: `Invalid ID provided.`
             });
         }

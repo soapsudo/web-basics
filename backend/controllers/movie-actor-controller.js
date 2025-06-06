@@ -39,7 +39,7 @@ class MovieActor extends BaseController{
         } 
         if(movieId < 1 || actorId < 1){
             return next({
-                status: statusCodes.BAD_REQUEST,
+                status: statusCodes.NOT_FOUND,
                 message: `Bad request, no valid data provided`
             });
         }

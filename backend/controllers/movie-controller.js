@@ -26,9 +26,8 @@ class Movie extends BaseController {
         const parsedId = parseInt(req.params.id);
 
         if (isNaN(parsedId)){
-
             return next({
-                status: statusCodes.BAD_REQUEST,
+                status: statusCodes.NOT_FOUND,
                 message: `Invalid ID provided.`
             });
         }
@@ -36,7 +35,7 @@ class Movie extends BaseController {
         const inRange = await this.movieModel.isIdInRange(parsedId);
         if (inRange === false){
             return next({
-                status: statusCodes.BAD_REQUEST,
+                status: statusCodes.NOT_FOUND,
                 message: `Invalid ID provided.`
             });
         } 
@@ -204,7 +203,7 @@ class Movie extends BaseController {
         const parsedId = parseInt(req.params.id);
         if (isNaN(parsedId)){
             return next({
-                status: statusCodes.BAD_REQUEST,
+                status: statusCodes.NOT_FOUND,
                 message: `Invalid ID provided.`
             });
         }
@@ -212,7 +211,7 @@ class Movie extends BaseController {
         const inRange = await this.movieModel.isIdInRange(parsedId);
         if (inRange === false){
             return next({
-                status: statusCodes.BAD_REQUEST,
+                status: statusCodes.NOT_FOUND,
                 message: `Invalid ID provided.`
             });
         } 
@@ -245,7 +244,7 @@ class Movie extends BaseController {
         const parsedId = parseInt(req.params.id);
         if (isNaN(parsedId)){
             return next({
-                status: statusCodes.BAD_REQUEST,
+                status: statusCodes.NOT_FOUND,
                 message: `Invalid ID provided.`
             });
         }
@@ -253,7 +252,7 @@ class Movie extends BaseController {
         const inRange = await this.movieModel.isIdInRange(parsedId);
         if (inRange === false){
             return next({
-                status: statusCodes.BAD_REQUEST,
+                status: statusCodes.NOT_FOUND,
                 message: `Invalid ID provided.`
             });
         } 
