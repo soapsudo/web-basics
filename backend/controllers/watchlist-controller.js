@@ -49,7 +49,7 @@ class Watchlist extends BaseController{
 
         try{
             await this.watchlistModel.markMovieAsWatched(id);
-            return res.status(201).json({message: `Movie with the movie ID: ${id} marked as watched.`});
+            return res.status(200).json({message: `Movie with the movie ID: ${id} marked as watched.`});
 
         }catch(error){
             return next({
