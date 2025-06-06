@@ -37,7 +37,7 @@ async function addToWatchlistListener(id){
 
         try{
             const response = await fetch(`http://localhost:3000/watchlist/${id}`, {
-                method: `PUT`
+                method: `POST`
             })
 
             const data = await response.json();
