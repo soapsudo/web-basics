@@ -1,5 +1,6 @@
 import BaseController from "./base-controller.js";
 import WatchlistModel from "../models/watchlist.js"
+import MovieModel from "../models/movie.js";
 import statusCodes from "../server/status-codes.js";
 
 
@@ -8,6 +9,7 @@ class Watchlist extends BaseController{
     constructor(databaseUtils){
         super(databaseUtils);
         this.watchlistModel = new WatchlistModel(databaseUtils);
+        this.movieModel = new MovieModel(databaseUtils);
     }
 
     /**
@@ -31,6 +33,14 @@ class Watchlist extends BaseController{
         } 
         
         if(id < 1){
+            return next({
+                status: statusCodes.NOT_FOUND,
+                message: `Invalid ID provided.`
+            });
+        }
+        
+        const isIdInRange = await this.movieModel.isIdInRange(id);
+        if(isIdInRange === false){
             return next({
                 status: statusCodes.NOT_FOUND,
                 message: `Invalid ID provided.`
@@ -76,6 +86,14 @@ class Watchlist extends BaseController{
                 message: `Invalid ID provided.`
             });
         } 
+
+        const isIdInRange = await this.movieModel.isIdInRange(id);
+        if(isIdInRange === false){
+            return next({
+                status: statusCodes.NOT_FOUND,
+                message: `Invalid ID provided.`
+            });
+        }
 
         try{
             await this.watchlistModel.putMovieInWatchlist(id);
@@ -152,6 +170,15 @@ class Watchlist extends BaseController{
             });
         }
 
+
+        const isIdInRange = await this.movieModel.isIdInRange(id);
+        if(isIdInRange === false){
+            return next({
+                status: statusCodes.NOT_FOUND,
+                message: `Invalid ID provided.`
+            });
+        }
+
         try{
             const movie = await this.watchlistModel.getMovieFromWatchlist(id);
 
@@ -194,6 +221,14 @@ class Watchlist extends BaseController{
         }
 
         if(id < 1){
+            return next({
+                status: statusCodes.NOT_FOUND,
+                message: `Invalid ID provided.`
+            });
+        }
+
+        const isIdInRange = await this.movieModel.isIdInRange(id);
+        if(isIdInRange === false){
             return next({
                 status: statusCodes.NOT_FOUND,
                 message: `Invalid ID provided.`
