@@ -19,13 +19,10 @@ class MovieModel extends Model{
     async updateMovie(movieData){
         const actorNames = movieData.actors.split(',');
 
-        let sql;
         let insert;
 
         try{
             const director = await this.director.getDirector(movieData.director_first_name, movieData.director_last_name);
-
-            console.log(this.updateQuery())
             insert = await this.db.execute(this.updateQuery(), [movieData.category, director.director_id, movieData.movie_title, movieData.image, movieData.description, movieData.year, movieData.score, movieData.movie_id]);                 
                 
         }catch(error){

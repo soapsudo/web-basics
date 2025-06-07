@@ -61,7 +61,7 @@ async function addToWatchedListener(id){
 
             const data = await response.json();
 
-            if(response.status !== 201){
+            if(response.status !== 200){
                 new ErrorHandler(false, data, document);
             } 
             else{
