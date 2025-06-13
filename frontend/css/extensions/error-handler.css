@@ -16,35 +16,25 @@
     transition-duration: 0.3s;
 }
 
-.popup-green {
-    position: fixed;
-    bottom: 1.25rem;
-    left: 50%;
-    transform: translateX(-50%);
+.popup-green{
     background:   #99ff99;
-    border: 0.063rem solid #ccc;
-    border-radius: 0.625rem;
-    padding: 0.938rem 1.25rem;
-    box-shadow: 0 0.25rem 0.4rem rgba(0, 0, 0, 0.2);
-    z-index: 9999;
-    display: flex;
-    align-items: center;
-    gap: 0.625rem;
-    max-width: 90%;
 }
 
-.popup-red {
+.popup-red{
+    background:  #ff8080;    
+}
+
+.popup {
+    display: none;
     position: fixed;
     bottom: 1.25rem;
     left: 50%;
     transform: translateX(-50%);
-    background:  #ff8080;    
     border: 0.063rem solid #ccc;
     border-radius: 0.625rem;
     padding: 0.938rem 1.25rem;
     box-shadow: 0 0.25rem 0.4rem rgba(0, 0, 0, 0.2);
     z-index: 9999;
-    display: flex;
     align-items: center;
     gap: 0.625rem;
     max-width: 90%;

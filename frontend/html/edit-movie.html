@@ -10,9 +10,9 @@
     <script defer src="../js/edit-movie.js" ></script>
 </head>
 <body>
-    <div id="header"></div>
+    <header></header>
 
-    <section class="container-crud">
+    <main class="container-crud">
 
         <form id="edit-movie" class="add-movie-form" action="POST">        
             <h1>Edit an existing movie</h1><br>
@@ -23,7 +23,6 @@
             <label id="image-label" for="image">Image</label><br>
             <input id="image" type="file" class="file-input form-input"><br>
 
-            <!--- Ik heb hier de categorieen hardcoded erin gezet, omdat het makkelijker is. In een ideale situatie zouden ze met een script dynamisch hier komen --->
             <label for="category">Category</label><br>
             <select id="category" class="select-input form-input">
                 <option value="1" id="Action">Action</option>
@@ -71,12 +70,12 @@
             <label for="year">Year of release</label><br>
             <input id="year" type="date" class="text-input form-input" required><br>
 
-            <button class="button" type="submit">Submit</button> <button type="button" id="delete-movie" class="button-red">Delete movie</button>
+            <button class="button" type="submit">Submit</button> <button type="button" id="delete-movie" class="button button-red">Delete movie</button>
         </form>
     
-    </section>
+    </main>
 
-    <div id="footer"></div>
+    <footer></footer>
     
     <div class="popup" id="popup"></div>
 

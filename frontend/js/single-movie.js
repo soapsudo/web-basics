@@ -20,7 +20,7 @@ async function setEditButtonLink(id){
 async function changeAddToWatchlistButton(){
     const button = document.getElementById(`single-movie-add-to-watchlist`);
     
-    button.setAttribute('class', 'button-green-disabled');
+    button.setAttribute('class', 'button button-green-disabled');
     button.removeEventListener('click', addToWatchlistHandler);
 
     button.innerText = `On watchlist`;

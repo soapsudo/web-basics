@@ -10,10 +10,6 @@ body {
     flex-direction: column;
 }
 
-#footer{
-    margin-top: auto;
-}
-
 h1{
     font-size: 2.188rem;
 }
@@ -68,70 +64,40 @@ main{
 }
 
 .button-red{
-    margin: 0.313rem;
-    border-radius: 0.313rem;
-    padding: 0.625rem 1.25rem;
-    background-color:  #cc0000;
-    border-style: none;
-    font-size: 1.125rem;
-    color: #FFFF;
-    transition: ease-in-out;
-    transition-duration: 0.3s;  
+    background-color:  #cc0000; 
 }
 
 .button-red:hover{
     background-color:  #ff3333;
-    transition: ease-in-out;
-    transition-duration: 0.3s;    
 }
 
-
 .button-white{
-    margin: 0.313rem;
-    border-radius: 0.313rem;
-    padding: 0.625rem 1.25rem;
     background-color:  #f9f9f9;
     border-style: solid;
     border-color: #333;
     font-size: 1.125rem;
     color: #333;
-    transition: ease-in-out;
-    transition-duration: 0.3s;  
 }
 
 .button-white:hover{
-    background-color:  #ececec;;
-    transition: ease-in-out;
-    transition-duration: 0.3s;    
+    background-color:  #ececec;;  
 }
 
 
 .button-green{
-    margin: 0.313rem;
-    border-radius: 0.313rem;
-    padding: 0.625rem 1.25rem;
     background-color:  #006600;
-    border-style: none;
-    font-size: 1.125rem;
-    color: #FFFF;
-    transition: ease-in-out;
-    transition-duration: 0.3s;  
 }
 
 .button-green-disabled{
-    margin: 0.313rem;
-    border-radius: 0.313rem;
-    padding: 0.625rem 1.25rem;
     background-color:  #006600;
-    border-style: none;
-    font-size: 1.125rem;
-    color: #FFFF;
+}
+
+.button-green-disabled:hover{
+    background-color:  #006600;
 }
 
 .button-green:hover{
     background-color:  #009900;
-    transition: ease-in-out;
-    transition-duration: 0.3s;
 }
 
 .file-input{

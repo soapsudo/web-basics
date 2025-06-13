@@ -1,4 +1,4 @@
-.header {
+header {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -21,11 +21,10 @@
         width: 9.375rem;
     }
 
-    .header{
-        padding: 1.563rem 120px 1.563rem 120px;
+    header{
+        padding: 1.563rem 7.5rem 1.563rem 7.5rem;
     }
 }
-
 
 .menu {
     display: flex;
