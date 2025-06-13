@@ -30,7 +30,8 @@ class ErrorHandler {
 
     loadHTML(success, message){
         const popup = this.document.getElementById('popup');
-
+        popup.innerHTML = ``;
+        
         if(success){
             popup.setAttribute('class', 'popup popup-green');
             popup.innerHTML = `
